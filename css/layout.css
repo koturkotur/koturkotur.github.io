@@ -68,6 +68,7 @@
   display: grid;
   grid-template-columns: 1fr; /* Mobile: single column list view */
   gap: var(--space-xl); /* Mobile: larger gap for list feel */
+  padding-top: var(--space-3xl); /* Space below navigation */
 }
 
 /* Tablet: 768px – 1199px */
@@ -75,7 +76,7 @@
   .project-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-md);
-    padding: 0 var(--space-md); /* Match gap for edge spacing */
+    padding: var(--space-4xl) var(--space-md) 0; /* Match gap for edge spacing + top space */
   }
 }
 
@@ -84,7 +85,7 @@
   .project-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-md);
-    padding: 0 var(--space-md); /* Match gap for edge spacing */
+    padding: var(--space-4xl) var(--space-md) 0; /* Match gap for edge spacing + top space */
     width: 100%;
   }
 }
@@ -94,7 +95,7 @@
   .project-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-md);
-    padding: 0 var(--space-md);
+    padding: var(--space-4xl) var(--space-md) 0; /* Match gap for edge spacing + top space */
     width: 100%;
   }
 }
