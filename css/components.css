@@ -270,6 +270,20 @@
   width: max-content;
 }
 
+/* Mobile: keep pills, allow horizontal scroll */
+@media (max-width: 767px) {
+  .filter-pills {
+    width: calc(100vw - (var(--space-md) * 2));
+    max-width: calc(100vw - (var(--space-md) * 2));
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .filter-pills::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .filter-pill {
   padding: 10px 20px;
   border-radius: var(--radius-full);
