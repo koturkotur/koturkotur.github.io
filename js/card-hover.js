@@ -83,7 +83,8 @@
    */
   function applyParallax(cardImage, offsetX, offsetY) {
     if (!cardImage) return;
-    cardImage.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    cardImage.style.setProperty('--parallax-x', `${offsetX}px`);
+    cardImage.style.setProperty('--parallax-y', `${offsetY}px`);
   }
 
   /**
@@ -92,7 +93,8 @@
    */
   function resetParallax(cardImage) {
     if (!cardImage) return;
-    cardImage.style.transform = '';
+    cardImage.style.removeProperty('--parallax-x');
+    cardImage.style.removeProperty('--parallax-y');
   }
 
   /**

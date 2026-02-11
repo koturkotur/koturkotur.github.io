@@ -408,6 +408,9 @@
 .card-image {
   position: relative;
   width: 100%;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px)) scale(1.06);
+  transform-origin: center;
+  will-change: transform;
 }
 
 .card-image img {
