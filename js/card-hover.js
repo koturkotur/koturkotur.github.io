@@ -21,6 +21,9 @@
   // Track active cards and their animation frames
   const activeCards = new Map(); // cardElement -> { rafId, targetX, targetY, currentX, currentY }
 
+  // Mobile center highlight tracking
+  let isCenterTicking = false;
+
   /**
    * Cache DOM references
    */
@@ -221,19 +224,61 @@
   }
 
   /**
+   * Highlights the card closest to the viewport center (mobile)
+   */
+  function updateCenteredCard() {
+    if (projectCards.length === 0) return;
+
+    const viewportCenter = window.innerHeight / 2;
+    let closestCard = null;
+    let closestDistance = Infinity;
+
+    projectCards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.top + rect.height / 2;
+      const distance = Math.abs(viewportCenter - cardCenter);
+
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestCard = card;
+      }
+    });
+
+    projectCards.forEach(card => {
+      card.classList.toggle('is-centered', card === closestCard);
+    });
+  }
+
+  function requestCenterTick() {
+    if (!isCenterTicking) {
+      window.requestAnimationFrame(() => {
+        updateCenteredCard();
+        isCenterTicking = false;
+      });
+      isCenterTicking = true;
+    }
+  }
+
+  function attachCenterHighlightHandlers() {
+    updateCenteredCard();
+    window.addEventListener('scroll', requestCenterTick, { passive: true });
+    window.addEventListener('resize', requestCenterTick);
+  }
+
+  /**
    * Initializes the card hover module
    */
   function init() {
-    // Skip initialization on touch devices (no hover support)
-    if (!supportsHover) {
-      console.log('Card hover effects disabled: device does not support hover');
-      return;
-    }
-
     cacheElements();
 
     if (projectCards.length === 0) {
       console.warn('No project cards found (.project-card)');
+      return;
+    }
+
+    // Mobile: highlight card centered in viewport
+    if (!supportsHover) {
+      attachCenterHighlightHandlers();
       return;
     }
 

@@ -453,6 +453,7 @@
 .card-hover {
   z-index: 1;
   opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .project-card:hover .card-cover {
@@ -585,16 +586,38 @@
   }
 
   .card-pill {
-    display: none;
+    display: flex;
+    opacity: 0;
+  }
+
+  .project-card.is-centered .card-pill {
+    opacity: 1;
+  }
+
+  .project-card.is-centered .card-pill-top {
+    top: 16px;
+  }
+
+  .project-card.is-centered .card-pill-bottom {
+    bottom: 16px;
   }
 
   .card-info {
-    display: block;
+    display: none;
   }
 
   .card-image-wrapper {
     border-radius: var(--radius-md);
     overflow: hidden;
+  }
+
+  .project-card.is-centered .card-cover {
+    opacity: 0;
+  }
+
+  .project-card.is-centered .card-hover {
+    opacity: 1;
+    z-index: 2;
   }
 }
 
