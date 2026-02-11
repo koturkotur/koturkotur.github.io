@@ -98,12 +98,18 @@
    ========================================================================== */
 
 .filter-bar {
-  position: sticky;
-  top: 80px; /* Positioned below the fixed nav (100px - some offset) */
-  z-index: 50;
-  padding: var(--space-md) 0;
-  margin-bottom: var(--space-lg);
-  background: var(--bg-primary); /* Ensure content doesn't show through */
+  position: fixed;
+  bottom: var(--space-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+  padding: 0;
+  margin: 0;
+  pointer-events: none; /* allow clicks to pass through to content behind */
+}
+
+.filter-bar > * {
+  pointer-events: auto; /* re-enable clicks on actual filter elements */
 }
 
 /* ==========================================================================

@@ -173,7 +173,7 @@
 }
 
 .filter-bar {
-  animation: fadeUp 0.5s ease-out 0.3s both;
+  animation: fadeIn 0.5s ease-out 0.3s both;
 }
 
 /* ------------------------------------------

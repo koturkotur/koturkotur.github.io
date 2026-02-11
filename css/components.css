@@ -258,12 +258,15 @@
   display: flex;
   gap: 4px;
   background: var(--bg-elevated);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: var(--radius-xl);
   padding: 6px;
   box-shadow: var(--shadow-nav);
   border: 1px solid var(--border);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  width: max-content;
 }
 
 .filter-pill {
@@ -296,7 +299,8 @@
 /* Mobile Dropdown */
 .filter-dropdown {
   position: relative;
-  width: 100%;
+  width: auto;
+  min-width: 180px;
 }
 
 .filter-dropdown-toggle {
@@ -306,7 +310,9 @@
   width: 100%;
   padding: 14px 20px;
   background: var(--bg-elevated);
-  border-radius: var(--radius-lg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-xl);
   border: 1px solid var(--border);
   color: var(--text-primary);
   font-size: var(--text-base);
@@ -325,17 +331,19 @@
 
 .filter-dropdown-menu {
   position: absolute;
-  top: calc(100% + 8px);
+  bottom: calc(100% + 8px);
   left: 0;
   right: 0;
   background: var(--bg-elevated);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-card);
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-8px);
+  transform: translateY(8px);
   transition: var(--transition-base);
   z-index: 60;
 }
