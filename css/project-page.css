@@ -1,0 +1,365 @@
+/* ==========================================================================
+   PROJECT PAGE CSS
+   Styles for individual project case study pages
+   Uses CSS tokens from tokens.css
+   ========================================================================== */
+
+/* ==========================================================================
+   1. BACK NAVIGATION
+   ========================================================================== */
+
+.project-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+  margin-bottom: var(--space-xl);
+  transition: var(--transition-fast);
+}
+
+.project-back:hover {
+  color: var(--accent);
+  gap: 12px;
+}
+
+.project-back svg {
+  transition: transform var(--transition-fast);
+}
+
+.project-back:hover svg {
+  transform: translateX(-4px);
+}
+
+/* ==========================================================================
+   2. PROJECT HEADER
+   ========================================================================== */
+
+.project-header {
+  margin-bottom: var(--space-2xl);
+}
+
+.project-title {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  line-height: var(--leading-tight);
+}
+
+.project-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Reuse .tag class from components.css */
+
+/* ==========================================================================
+   3. HERO IMAGE
+   ========================================================================== */
+
+.project-hero {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-3xl);
+}
+
+.project-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+/* ==========================================================================
+   4. OVERVIEW + DETAILS SPLIT
+   ========================================================================== */
+
+.project-overview {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-3xl);
+}
+
+.project-description {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+/* ==========================================================================
+   5. DETAILS SIDEBAR
+   ========================================================================== */
+
+.project-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.detail-item {
+  /* label + value pair */
+}
+
+.detail-label {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.detail-value {
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.detail-value a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.detail-value a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   6. CONTENT SECTIONS
+   ========================================================================== */
+
+.project-section {
+  margin-bottom: var(--space-3xl);
+}
+
+.project-section-title {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.project-section-text {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 720px;
+}
+
+/* ==========================================================================
+   7. IMAGE GALLERY
+   ========================================================================== */
+
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-3xl);
+}
+
+.project-gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  display: block;
+}
+
+.project-gallery-full {
+  /* Full-width single image */
+  margin-bottom: var(--space-3xl);
+}
+
+.project-gallery-full img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  display: block;
+}
+
+/* ==========================================================================
+   8. PREVIOUS/NEXT NAVIGATION
+   ========================================================================== */
+
+.project-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  padding: var(--space-2xl) 0;
+  border-top: 1px solid var(--border);
+  margin-top: var(--space-2xl);
+}
+
+.project-nav-link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  text-decoration: none;
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  transition: var(--transition-fast);
+}
+
+.project-nav-link:hover {
+  background: var(--bg-elevated);
+}
+
+.project-nav-link--next {
+  text-align: right;
+}
+
+.project-nav-label {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+}
+
+.project-nav-title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   9. SCROLL ANIMATIONS
+   ========================================================================== */
+
+.project-hero,
+.project-overview,
+.project-section,
+.project-gallery,
+.project-gallery-full,
+.project-nav {
+  /* These use anim-fade-up class from animations.css */
+}
+
+/* ==========================================================================
+   10. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) {
+  .project-title {
+    font-size: var(--text-3xl);
+  }
+
+  .project-overview {
+    gap: var(--space-xl);
+  }
+
+  .project-description {
+    font-size: var(--text-base);
+  }
+}
+
+/* Mobile (below 768px) */
+@media (max-width: 767px) {
+  .project-back {
+    margin-bottom: var(--space-lg);
+  }
+
+  .project-header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .project-title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-sm);
+  }
+
+  .project-hero {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .project-hero img {
+    border-radius: var(--radius-md);
+  }
+
+  .project-overview {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .project-description {
+    font-size: var(--text-base);
+  }
+
+  .project-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  .detail-item:last-child:nth-child(odd) {
+    grid-column: span 2;
+  }
+
+  .project-section {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .project-section-title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-md);
+  }
+
+  .project-gallery {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .project-gallery img {
+    border-radius: var(--radius-sm);
+  }
+
+  .project-gallery-full {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .project-gallery-full img {
+    border-radius: var(--radius-md);
+  }
+
+  .project-nav {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+    padding: var(--space-xl) 0;
+    margin-top: var(--space-xl);
+  }
+
+  .project-nav-link {
+    padding: var(--space-md);
+  }
+
+  .project-nav-link--next {
+    text-align: left;
+  }
+
+  .project-nav-title {
+    font-size: var(--text-base);
+  }
+}
+
+/* Small Mobile (below 480px) */
+@media (max-width: 479px) {
+  .project-title {
+    font-size: var(--text-2xl);
+  }
+
+  .project-details {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-item:last-child:nth-child(odd) {
+    grid-column: span 1;
+  }
+}

@@ -1,0 +1,228 @@
+/* ============================================
+   ANIMATION SYSTEM
+   Keyframes, utility classes, and transitions
+   ============================================ */
+
+/* ------------------------------------------
+   Keyframes
+   ------------------------------------------ */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ------------------------------------------
+   Scroll-Triggered Animation Classes
+   Elements start invisible, animate when .is-visible is added
+   ------------------------------------------ */
+
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.anim-fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-fade-in {
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.anim-fade-in.is-visible {
+  opacity: 1;
+}
+
+.anim-fade-down {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.anim-fade-down.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.anim-scale-in.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.anim-slide-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.anim-slide-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.anim-slide-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.anim-slide-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ------------------------------------------
+   Stagger Delay Classes
+   For manual control of animation delays
+   ------------------------------------------ */
+
+.anim-delay-1 { transition-delay: 0.1s; }
+.anim-delay-2 { transition-delay: 0.2s; }
+.anim-delay-3 { transition-delay: 0.3s; }
+.anim-delay-4 { transition-delay: 0.4s; }
+.anim-delay-5 { transition-delay: 0.5s; }
+.anim-delay-6 { transition-delay: 0.6s; }
+.anim-delay-7 { transition-delay: 0.7s; }
+.anim-delay-8 { transition-delay: 0.8s; }
+
+/* ------------------------------------------
+   Page Entrance Animations
+   Applied directly, not scroll-triggered
+   ------------------------------------------ */
+
+.nav-header {
+  animation: fadeDown 0.5s ease-out 0.1s both;
+}
+
+.page-header {
+  animation: fadeUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+.filter-bar {
+  animation: fadeUp 0.5s ease-out 0.3s both;
+}
+
+/* ------------------------------------------
+   Reduced Motion Support
+   Disable animations for users who prefer reduced motion
+   ------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all scroll-triggered animations */
+  .anim-fade-up,
+  .anim-fade-in,
+  .anim-fade-down,
+  .anim-scale-in,
+  .anim-slide-right,
+  .anim-slide-left {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  /* Disable page entrance animations */
+  .nav-header,
+  .page-header,
+  .filter-bar {
+    animation: none;
+  }
+
+  /* Remove stagger delays */
+  .anim-delay-1,
+  .anim-delay-2,
+  .anim-delay-3,
+  .anim-delay-4,
+  .anim-delay-5,
+  .anim-delay-6,
+  .anim-delay-7,
+  .anim-delay-8 {
+    transition-delay: 0s;
+  }
+}
+
+/* ------------------------------------------
+   Theme Transition
+   Smooth color transitions when switching themes
+   ------------------------------------------ */
+
+body.theme-transitioning,
+body.theme-transitioning * {
+  transition: background-color 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease !important;
+}

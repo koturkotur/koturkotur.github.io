@@ -1,0 +1,425 @@
+/* ==========================================================================
+   LAYOUT SYSTEM
+   Portfolio Website Layout - Inspired by Velvele Studio
+   Mobile-first responsive design with custom property integration
+   ========================================================================== */
+
+/* ==========================================================================
+   PAGE CONTAINER
+   Full page wrapper and centered content container
+   ========================================================================== */
+
+.page {
+  /* Full page wrapper - ensures proper document flow */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  /* Centered content container */
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 12px; /* Mobile padding */
+}
+
+/* Tablet: 768px – 1199px */
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+}
+
+/* Desktop: 1200px – 1699px */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+/* XLarge: ≥ 1700px */
+@media (min-width: 1700px) {
+  .container {
+    max-width: 1400px;
+  }
+}
+
+/* ==========================================================================
+   MAIN CONTENT AREA
+   Primary content wrapper with fixed nav compensation
+   ========================================================================== */
+
+.main {
+  /* Main content below fixed navigation */
+  min-height: 100vh;
+  padding-top: 100px; /* Space for fixed nav */
+  flex: 1;
+}
+
+/* ==========================================================================
+   PROJECT GRID
+   Responsive grid for project listings
+   Mobile: 1 column (list view)
+   Tablet: 2 columns
+   Desktop+: 3 columns
+   ========================================================================== */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile: single column list view */
+  gap: var(--space-xl); /* Mobile: larger gap for list feel */
+}
+
+/* Tablet: 768px – 1199px */
+@media (min-width: 768px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+}
+
+/* Desktop: 1200px – 1699px */
+@media (min-width: 1200px) {
+  .project-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* XLarge: ≥ 1700px - maintains 3 columns with wider container */
+@media (min-width: 1700px) {
+  .project-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ==========================================================================
+   FILTER BAR
+   Sticky filter navigation below fixed header
+   ========================================================================== */
+
+.filter-bar {
+  position: sticky;
+  top: 80px; /* Positioned below the fixed nav (100px - some offset) */
+  z-index: 50;
+  padding: var(--space-md) 0;
+  margin-bottom: var(--space-lg);
+  background: var(--bg-primary); /* Ensure content doesn't show through */
+}
+
+/* ==========================================================================
+   SECTION LAYOUTS
+   Standard section spacing and headers
+   ========================================================================== */
+
+.section {
+  padding: var(--space-3xl) 0;
+}
+
+.section-header {
+  margin-bottom: var(--space-xl);
+}
+
+/* ==========================================================================
+   FOOTER LAYOUT
+   Elevated footer with rounded top corners
+   ========================================================================== */
+
+.footer {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: var(--space-3xl) var(--space-xl);
+  margin-top: var(--space-3xl);
+}
+
+/* ==========================================================================
+   UTILITY CLASSES - FLEXBOX
+   Common flexbox patterns
+   ========================================================================== */
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+/* ==========================================================================
+   UTILITY CLASSES - GAPS
+   Consistent spacing utilities
+   ========================================================================== */
+
+.gap-sm {
+  gap: var(--space-sm);
+}
+
+.gap-md {
+  gap: var(--space-md);
+}
+
+.gap-lg {
+  gap: var(--space-lg);
+}
+
+/* ==========================================================================
+   UTILITY CLASSES - TEXT
+   Text alignment utilities
+   ========================================================================== */
+
+.text-center {
+  text-align: center;
+}
+
+/* ==========================================================================
+   RESPONSIVE VISIBILITY
+   Show/hide elements based on viewport
+   ========================================================================== */
+
+/* Hidden on mobile (≤ 767px), visible on tablet+ (≥ 768px) */
+.hide-mobile {
+  display: none !important;
+}
+
+/* Visible on mobile (≤ 767px), hidden on tablet+ (≥ 768px) */
+.hide-desktop {
+  display: block;
+}
+
+/* Show on mobile only */
+.show-mobile-only {
+  display: block;
+}
+
+/* Tablet and up: 768px+ */
+@media (min-width: 768px) {
+  .hide-mobile {
+    display: block !important;
+  }
+  
+  /* Filter pills need flex display */
+  .filter-pills.hide-mobile {
+    display: flex !important;
+  }
+  
+  /* Nav links need flex display */
+  .nav-links.hide-mobile {
+    display: flex !important;
+  }
+  
+  .hide-desktop {
+    display: none !important;
+  }
+  
+  .show-mobile-only {
+    display: none !important;
+  }
+  
+  /* For flex/grid display types */
+  .hide-mobile.flex {
+    display: flex !important;
+  }
+  
+  .hide-mobile.grid {
+    display: grid !important;
+  }
+}
+
+/* ==========================================================================
+   SPLIT GRID
+   Two-column layout for project detail pages
+   Desktop: 2fr / 1fr split
+   Mobile: Stacked single column
+   ========================================================================== */
+
+.split-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile: stacked */
+  gap: var(--space-xl);
+}
+
+/* Tablet: 768px – 1199px */
+@media (min-width: 768px) {
+  .split-grid {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+/* ==========================================================================
+   IMAGE CONTAINERS
+   Aspect ratio utilities for consistent image sizing
+   ========================================================================== */
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-wide {
+  aspect-ratio: 16 / 10;
+}
+
+.img-cover {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================================================
+   ADDITIONAL LAYOUT UTILITIES
+   Helper classes for common layout patterns
+   ========================================================================== */
+
+/* Full width element */
+.w-full {
+  width: 100%;
+}
+
+/* Full height element */
+.h-full {
+  height: 100%;
+}
+
+/* Max width constraints */
+.max-w-none {
+  max-width: none;
+}
+
+/* Overflow handling */
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+/* Position utilities */
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+/* Z-index scale */
+.z-10 {
+  z-index: 10;
+}
+
+.z-20 {
+  z-index: 20;
+}
+
+.z-30 {
+  z-index: 30;
+}
+
+.z-40 {
+  z-index: 40;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+/* ==========================================================================
+   GRID UTILITIES
+   Additional grid patterns
+   ========================================================================== */
+
+.grid {
+  display: grid;
+}
+
+/* Auto-fit grid for responsive columns */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
+
+/* ==========================================================================
+   SPACING UTILITIES
+   Margin and padding helpers
+   ========================================================================== */
+
+/* Margin utilities */
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+.mt-xl { margin-top: var(--space-xl); }
+.mt-2xl { margin-top: var(--space-2xl); }
+.mt-3xl { margin-top: var(--space-3xl); }
+
+.mb-sm { margin-bottom: var(--space-sm); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
+.mb-xl { margin-bottom: var(--space-xl); }
+.mb-2xl { margin-bottom: var(--space-2xl); }
+.mb-3xl { margin-bottom: var(--space-3xl); }
+
+/* Padding utilities */
+.pt-sm { padding-top: var(--space-sm); }
+.pt-md { padding-top: var(--space-md); }
+.pt-lg { padding-top: var(--space-lg); }
+.pt-xl { padding-top: var(--space-xl); }
+.pt-2xl { padding-top: var(--space-2xl); }
+.pt-3xl { padding-top: var(--space-3xl); }
+
+.pb-sm { padding-bottom: var(--space-sm); }
+.pb-md { padding-bottom: var(--space-md); }
+.pb-lg { padding-bottom: var(--space-lg); }
+.pb-xl { padding-bottom: var(--space-xl); }
+.pb-2xl { padding-bottom: var(--space-2xl); }
+.pb-3xl { padding-bottom: var(--space-3xl); }
+
+/* ==========================================================================
+   PRINT STYLES
+   Optimizations for print media
+   ========================================================================== */
+
+@media print {
+  .filter-bar,
+  .hide-mobile,
+  .show-mobile-only {
+    display: none !important;
+  }
+  
+  .main {
+    padding-top: 0;
+  }
+  
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+  
+  .footer {
+    margin-top: var(--space-xl);
+    border-radius: 0;
+  }
+}

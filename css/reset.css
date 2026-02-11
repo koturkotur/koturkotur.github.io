@@ -1,0 +1,116 @@
+/**
+ * Modern CSS Reset
+ * A minimal, opinionated reset for modern browsers
+ * Based on best practices from Andy Bell's "A Modern CSS Reset"
+ */
+
+/* Box-sizing reset - apply border-box to all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Smooth scrolling for the entire document */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Body should take at least full viewport height */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Images and media elements should be responsive by default */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Form elements should inherit font styles */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Remove default list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Anchor tag reset - remove underline and inherit color by default */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/* Remove default button styling */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Table reset */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Remove default fieldset styling */
+fieldset {
+  border: none;
+}
+
+/* Reduced motion - disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  * {
+    border-color: currentColor;
+  }
+}
