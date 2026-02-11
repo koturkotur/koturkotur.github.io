@@ -45,14 +45,14 @@ project/
 │   ├── tokens.css                  # CSS custom properties (colors, spacing, shadows)
 │   ├── base.css                    # Font import, base element styles
 │   ├── layout.css                  # Grid system, responsive breakpoints, filter bar positioning
-│   ├── components.css              # Navigation, cards, filter pills, dropdown, footer
+│   ├── components.css              # Navigation, cards, filter pills, footer
 │   ├── animations.css              # Keyframes, scroll animations, hover transitions
 │   └── project-page.css            # Project detail page styles (hero, overview, gallery, prev/next nav)
 ├── js/
 │   ├── theme.js                    # Dark/light toggle with localStorage persistence
-│   ├── filter.js                   # Category filtering with pill/dropdown UI
-│   ├── animations.js               # IntersectionObserver for scroll reveals
-│   ├── card-hover.js               # Card image swap + parallax on hover
+│   ├── filter.js                   # Category filtering with scrollable pill bar + drag
+│   ├── animations.js               # Animation system (cards reveal on load)
+│   ├── card-hover.js               # Card image swap + parallax on hover; mobile centered flip
 │   └── nav.js                      # Mobile menu + scroll-based nav hide/show
 ├── projects/
 │   ├── alluel.html                 # Project detail: Alluel
@@ -73,8 +73,8 @@ project/
 ## Features
 
 ### Layout
-- Floating navigation with logo, nav links (Projects, About, Contact), theme toggle
-- Full-width project grid (responsive 3→2→1 column)
+- Floating navigation centered horizontally with logo, nav links (Projects, About, Contact), theme toggle
+- Full-width project grid (responsive 3→2→1 column) with consistent edge spacing
 - Fixed filter bar at bottom center (Baker Studio style)
 - Footer with email, LinkedIn, and copyright
 
@@ -82,11 +82,11 @@ project/
 - 2 images per card: cover (default) + hover reveal
 - Parallax effect on hover (images move in opposite directions)
 - Category pills slide in on hover
-- Year/Client metadata shown on hover
+- Mobile: centered card shows hover state + pills (auto-flips every 1s)
 
 ### Filter Bar
 - **Desktop**: Horizontal pill buttons (All + 6 categories)
-- **Mobile**: Centered dropdown with pills
+- **Mobile**: Same pill bar with horizontal drag/scroll
 - **Position**: Fixed at bottom center of viewport
 - Categories: Web, Branding, Video Editing, Editorial Design, Poster, Social Media
 
@@ -106,8 +106,8 @@ project/
 - Smooth transitions on all color properties
 
 ### Animations
-- Scroll reveal: `.anim-fade-up`, `.anim-fade-in`
-- IntersectionObserver triggers (10% threshold)
+- Cards fade in on page load (no scroll-based reveal)
+- Scroll reveal utilities still available: `.anim-fade-up`, `.anim-fade-in`
 - Hover transitions on cards, pills, buttons
 - Mobile menu slide animations
 
@@ -149,11 +149,14 @@ Visit `http://localhost:8080`
 
 ### Post-Build Changes
 
-**Commit c626000**: Moved filter bar from `position: sticky` (below header) to `position: fixed` at bottom center (Baker Studio style). Files modified:
-- `css/layout.css` — changed filter bar positioning
-- `css/components.css` — adjusted pills/dropdown for bottom position
-- `css/animations.css` — filter bar animation changed
-- `index.html` — removed `anim-fade-up` class from filter-bar
+- Filter bar moved to fixed bottom center and nudged up for better balance
+- Full-width grid layout with matched edge spacing (desktop + mobile)
+- Navigation centered horizontally and no longer shrinks on scroll
+- Card hover image bleed added to avoid edge cutoffs during parallax
+- Hover tag styling adjusted (no dark background on tags)
+- Mobile filter bar uses scrollable pill row with drag-to-scroll
+- Mobile cards use centered “hover state” (pills + image swap) with fade and 1s auto-flip
+- Cards reveal on page load instead of on scroll
 
 ---
 
@@ -172,9 +175,8 @@ Visit `http://localhost:8080`
 
 ### Medium Priority
 - [ ] **Performance optimization**
-  - Add `loading="lazy"` to project grid images
-  - Consider image optimization pipeline
-  - Add `fetchpriority="high"` to hero images
+- Consider image optimization pipeline
+- Add `fetchpriority="high"` to hero images
 
 - [ ] **Accessibility audit**
   - Verify all images have descriptive alt text
@@ -225,5 +227,4 @@ Visit `http://localhost:8080`
 
 ---
 
-**Last updated**: 2026-02-11  
-**Commits**: 2 total (initial build + filter bar reposition)
+**Last updated**: 2026-02-12
