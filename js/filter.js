@@ -20,6 +20,11 @@
   let dropdownContainer = null;
   let dropdownLabel = null;
   let dropdownMenu = null;
+  let filterPillsContainer = null;
+  let isDraggingPills = false;
+  let dragStartX = 0;
+  let dragStartScrollLeft = 0;
+  let hasDraggedPills = false;
 
   /**
    * Cache DOM references for better performance
@@ -32,6 +37,57 @@
     dropdownContainer = document.getElementById('filter-dropdown');
     dropdownLabel = document.querySelector('.filter-dropdown-label');
     dropdownMenu = document.querySelector('.filter-dropdown-menu');
+    filterPillsContainer = document.querySelector('.filter-pills');
+  }
+
+  /**
+   * Enables drag-to-scroll for the filter pill bar
+   */
+  function attachPillDragScroll() {
+    if (!filterPillsContainer) return;
+
+    filterPillsContainer.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      isDraggingPills = true;
+      hasDraggedPills = false;
+      dragStartX = event.clientX;
+      dragStartScrollLeft = filterPillsContainer.scrollLeft;
+      filterPillsContainer.classList.add('is-dragging');
+      filterPillsContainer.setPointerCapture(event.pointerId);
+    });
+
+    filterPillsContainer.addEventListener('pointermove', (event) => {
+      if (!isDraggingPills) return;
+      const deltaX = event.clientX - dragStartX;
+      if (Math.abs(deltaX) > 3) {
+        hasDraggedPills = true;
+      }
+      filterPillsContainer.scrollLeft = dragStartScrollLeft - deltaX;
+    });
+
+    const stopDrag = (event) => {
+      if (!isDraggingPills) return;
+      isDraggingPills = false;
+      filterPillsContainer.classList.remove('is-dragging');
+      if (event && event.pointerId !== undefined) {
+        filterPillsContainer.releasePointerCapture(event.pointerId);
+      }
+      setTimeout(() => {
+        hasDraggedPills = false;
+      }, 0);
+    };
+
+    filterPillsContainer.addEventListener('pointerup', stopDrag);
+    filterPillsContainer.addEventListener('pointercancel', stopDrag);
+    filterPillsContainer.addEventListener('pointerleave', stopDrag);
+
+    // Prevent accidental click when dragging
+    filterPillsContainer.addEventListener('click', (event) => {
+      if (hasDraggedPills) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    });
   }
 
   /**
@@ -261,6 +317,7 @@
     // Attach all event handlers
     attachFilterHandlers();
     attachDropdownHandlers();
+    attachPillDragScroll();
 
     // Set initial active state (default to 'all' if exists)
     const allFilter = filterPills.find(p => p.dataset.filter === 'all') ||
