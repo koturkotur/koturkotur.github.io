@@ -68,7 +68,7 @@
   display: grid;
   grid-template-columns: 1fr; /* Mobile: single column list view */
   gap: 12px; /* Match edge padding on mobile */
-  padding: var(--space-2xl) 12px 0; /* Space below navigation + edge padding */
+  padding: var(--space-xl) 12px 0; /* Space below navigation + edge padding */
 }
 
 /* Tablet: 768px – 1199px */
