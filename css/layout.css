@@ -107,7 +107,7 @@
 
 .filter-bar {
   position: fixed;
-  bottom: var(--space-lg);
+  bottom: var(--space-xl);
   left: 50%;
   transform: translateX(-50%);
   z-index: 90;
