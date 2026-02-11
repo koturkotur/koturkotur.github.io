@@ -67,7 +67,7 @@
 .project-grid {
   display: grid;
   grid-template-columns: 1fr; /* Mobile: single column list view */
-  gap: var(--space-xl); /* Mobile: larger gap for list feel */
+  gap: 12px; /* Match edge padding on mobile */
   padding: var(--space-3xl) 12px 0; /* Space below navigation + edge padding */
 }
 

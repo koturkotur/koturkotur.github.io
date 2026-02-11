@@ -23,6 +23,9 @@
 
   // Mobile center highlight tracking
   let isCenterTicking = false;
+  let centeredCard = null;
+  let flipIntervalId = null;
+  let isFlipped = false;
 
   /**
    * Cache DOM references
@@ -247,6 +250,35 @@
     projectCards.forEach(card => {
       card.classList.toggle('is-centered', card === closestCard);
     });
+
+    if (closestCard !== centeredCard) {
+      setCenteredCard(closestCard);
+    }
+  }
+
+  function clearCenteredFlip() {
+    if (flipIntervalId) {
+      clearInterval(flipIntervalId);
+      flipIntervalId = null;
+    }
+
+    if (centeredCard) {
+      centeredCard.classList.remove('is-flipped');
+    }
+
+    isFlipped = false;
+  }
+
+  function setCenteredCard(card) {
+    clearCenteredFlip();
+    centeredCard = card;
+
+    if (!centeredCard) return;
+
+    flipIntervalId = setInterval(() => {
+      isFlipped = !isFlipped;
+      centeredCard.classList.toggle('is-flipped', isFlipped);
+    }, 1000);
   }
 
   function requestCenterTick() {

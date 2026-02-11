@@ -611,13 +611,21 @@
     overflow: hidden;
   }
 
-  .project-card.is-centered .card-cover {
+  .project-card .card-cover {
+    opacity: 1;
+  }
+
+  .project-card .card-hover {
+    opacity: 0;
+    z-index: 2;
+  }
+
+  .project-card.is-centered.is-flipped .card-cover {
     opacity: 0;
   }
 
-  .project-card.is-centered .card-hover {
+  .project-card.is-centered.is-flipped .card-hover {
     opacity: 1;
-    z-index: 2;
   }
 }
 

@@ -95,9 +95,22 @@
     // Create IntersectionObserver
     observer = new IntersectionObserver(handleIntersection, OBSERVER_OPTIONS);
 
-    // Find and observe all animation elements
+    // Find all animation elements
     const animElements = document.querySelectorAll(ANIMATION_CLASSES.map(cls => `.${cls}`).join(', '));
-    animElements.forEach(el => observer.observe(el));
+    const projectCards = Array.from(document.querySelectorAll('.project-grid .project-card'));
+    const projectCardSet = new Set(projectCards);
+
+    // Reveal project cards immediately on page load
+    projectCards.forEach(card => {
+      card.classList.add('is-visible');
+    });
+
+    // Observe only non-card animation elements
+    animElements.forEach(el => {
+      if (!projectCardSet.has(el)) {
+        observer.observe(el);
+      }
+    });
 
     // Apply stagger delays to project grid cards
     const projectGrid = document.querySelector('.project-grid');
@@ -134,11 +147,19 @@
     // Create new observer and observe visible elements
     observer = new IntersectionObserver(handleIntersection, OBSERVER_OPTIONS);
 
+    const projectCards = Array.from(document.querySelectorAll('.project-grid .project-card'));
+    const projectCardSet = new Set(projectCards);
+
+    // Ensure project cards are visible immediately
+    projectCards.forEach(card => {
+      card.classList.add('is-visible');
+    });
+
     // Only observe elements that are currently visible (not filtered out)
     animElements.forEach(el => {
       // Check if element is visible (not display: none)
       const style = window.getComputedStyle(el);
-      if (style.display !== 'none') {
+      if (style.display !== 'none' && !projectCardSet.has(el)) {
         observer.observe(el);
       }
     });
