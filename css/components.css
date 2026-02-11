@@ -11,10 +11,13 @@
 .nav-header {
   position: fixed;
   top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   z-index: 100;
-  width: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--space-md);
 }
 
 .nav-bar {
@@ -73,12 +76,12 @@
 /* Nav scroll states - hide on scroll down, show on scroll up */
 /* Note: Removed padding change to prevent shrinking effect */
 .nav-header.nav-hidden {
-  transform: translateX(-50%) translateY(-120%);
+  transform: translateY(-120%);
   transition: transform 0.3s ease;
 }
 
 .nav-header:not(.nav-hidden) {
-  transform: translateX(-50%);
+  transform: translateY(0);
   transition: transform 0.3s ease;
 }
 
