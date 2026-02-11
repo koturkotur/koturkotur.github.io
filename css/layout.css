@@ -57,12 +57,12 @@
 }
 
 /* ==========================================================================
-   PROJECT GRID
-   Responsive grid for project listings
-   Mobile: 1 column (list view)
-   Tablet: 2 columns
-   Desktop+: 3 columns
-   ========================================================================== */
+    PROJECT GRID
+    Responsive grid for project listings
+    Mobile: 1 column (list view)
+    Tablet: 2 columns
+    Desktop+: 3 columns - full width with consistent gap/padding
+    ========================================================================== */
 
 .project-grid {
   display: grid;
@@ -75,6 +75,7 @@
   .project-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-md);
+    padding: 0 var(--space-md); /* Match gap for edge spacing */
   }
 }
 
@@ -82,13 +83,19 @@
 @media (min-width: 1200px) {
   .project-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    padding: 0 var(--space-md); /* Match gap for edge spacing */
+    width: 100%;
   }
 }
 
-/* XLarge: ≥ 1700px - maintains 3 columns with wider container */
+/* XLarge: ≥ 1700px - maintains 3 columns full width */
 @media (min-width: 1700px) {
   .project-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    padding: 0 var(--space-md);
+    width: 100%;
   }
 }
 
