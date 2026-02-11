@@ -70,11 +70,8 @@
   gap: 8px;
 }
 
-/* Nav scroll states */
-.nav-header.nav-scrolled .nav-bar {
-  padding: 8px 8px 8px 20px;
-}
-
+/* Nav scroll states - hide on scroll down, show on scroll up */
+/* Note: Removed padding change to prevent shrinking effect */
 .nav-header.nav-hidden {
   transform: translateX(-50%) translateY(-120%);
   transition: transform 0.3s ease;
