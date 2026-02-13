@@ -49,6 +49,7 @@
 
     menuBtn.classList.add(ACTIVE_CLASS);
     mobileMenu.classList.add(ACTIVE_CLASS);
+    document.body.classList.add('menu-open');
 
     // Keep nav visible and on top when menu is open
     if (navHeader) {
@@ -72,6 +73,7 @@
 
     menuBtn.classList.remove(ACTIVE_CLASS);
     mobileMenu.classList.remove(ACTIVE_CLASS);
+    document.body.classList.remove('menu-open');
 
     if (navHeader) {
       navHeader.classList.remove('menu-open');

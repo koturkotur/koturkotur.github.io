@@ -91,6 +91,22 @@
   transform: translateY(0) !important;
 }
 
+/* Page Zoom Out Effect */
+#page-wrapper {
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1),
+              border-radius 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  transform-origin: center top;
+  background: var(--bg-primary);
+  min-height: 100vh;
+}
+
+.menu-open #page-wrapper {
+  transform: scale(0.94) translateY(20px);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  pointer-events: none;
+}
+
 .nav-header.menu-open .nav-bar {
   background: transparent;
   backdrop-filter: none;
@@ -248,14 +264,17 @@
 }
 
 .mobile-menu-link {
-  font-size: clamp(2.5rem, 10vw, 4.5rem);
-  font-weight: var(--font-weight-light, 300);
+  font-size: clamp(3rem, 12vw, 5rem);
+  font-weight: 400;
   color: #fff;
   text-decoration: none;
-  line-height: 1.1;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.4s ease, transform 0.4s ease, color 0.2s ease;
+  transform: translateY(40px);
+  transition: opacity 0.5s cubic-bezier(0.215, 0.61, 0.355, 1),
+              transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1),
+              color 0.2s ease;
 }
 
 .mobile-menu.active .mobile-menu-link {
