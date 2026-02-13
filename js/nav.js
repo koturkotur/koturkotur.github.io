@@ -50,6 +50,12 @@
     menuBtn.classList.add(ACTIVE_CLASS);
     mobileMenu.classList.add(ACTIVE_CLASS);
 
+    // Keep nav visible and on top when menu is open
+    if (navHeader) {
+      navHeader.classList.remove(HIDDEN_CLASS);
+      navHeader.classList.add('menu-open');
+    }
+
     // Update accessibility attributes
     menuBtn.setAttribute('aria-expanded', 'true');
     mobileMenu.setAttribute('aria-hidden', 'false');
@@ -66,6 +72,10 @@
 
     menuBtn.classList.remove(ACTIVE_CLASS);
     mobileMenu.classList.remove(ACTIVE_CLASS);
+
+    if (navHeader) {
+      navHeader.classList.remove('menu-open');
+    }
 
     // Update accessibility attributes
     menuBtn.setAttribute('aria-expanded', 'false');
