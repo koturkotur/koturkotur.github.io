@@ -96,22 +96,35 @@
       return;
     }
 
-    // Create IntersectionObserver
-    observer = new IntersectionObserver(handleIntersection, OBSERVER_OPTIONS);
-
-    // Find all animation elements
-    const animElements = document.querySelectorAll(ANIMATION_CLASSES.map(cls => `.${cls}`).join(', '));
-
-    // Observe all animation elements (including project cards)
-    animElements.forEach(el => {
-      observer.observe(el);
-    });
-
     // Apply stagger delays to project grid cards
     const projectGrid = document.querySelector('.project-grid');
     if (projectGrid) {
       applyStaggerDelays(projectGrid);
     }
+
+    // Find all animation elements
+    const animElements = document.querySelectorAll(ANIMATION_CLASSES.map(cls => `.${cls}`).join(', '));
+
+    // Elements already in the viewport should appear instantly (no transition)
+    // to prevent layout shifts that mess up scroll restoration
+    animElements.forEach(el => {
+      if (isInViewport(el)) {
+        el.style.transition = 'none';
+        el.classList.add('is-visible');
+        // Force reflow so the instant state is applied
+        void el.offsetHeight;
+        el.style.transition = '';
+      }
+    });
+
+    // Create IntersectionObserver for remaining elements
+    observer = new IntersectionObserver(handleIntersection, OBSERVER_OPTIONS);
+
+    animElements.forEach(el => {
+      if (!el.classList.contains('is-visible')) {
+        observer.observe(el);
+      }
+    });
   }
 
   /**
