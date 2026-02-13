@@ -39,26 +39,30 @@
 
   /**
    * Apply stagger delays to project cards based on their position in the grid
+   * Only considers visible cards for proper stagger calculation
    * @param {HTMLElement} grid - The project grid container
    */
   function applyStaggerDelays(grid) {
     if (!grid) return;
 
-    const cards = Array.from(grid.children);
+    const allCards = Array.from(grid.children);
     const columns = getGridColumns();
 
-    cards.forEach((card, index) => {
-      // Calculate column index (position within the row)
-      const columnIndex = index % columns;
-      // Calculate delay: 0.1s per column position
+    // Get only visible cards and apply stagger based on their visible index
+    const visibleCards = allCards.filter(card => {
+      const style = window.getComputedStyle(card);
+      return style.display !== 'none';
+    });
+
+    // Reset all cards first
+    allCards.forEach(card => {
+      card.style.transitionDelay = '';
+    });
+
+    // Apply stagger to visible cards only
+    visibleCards.forEach((card, visibleIndex) => {
+      const columnIndex = visibleIndex % columns;
       const delay = columnIndex * 0.1;
-
-      // Remove any existing delay classes
-      for (let i = 1; i <= 8; i++) {
-        card.classList.remove(`anim-delay-${i}`);
-      }
-
-      // Apply inline style for dynamic delay
       card.style.transitionDelay = `${delay}s`;
     });
   }
@@ -111,6 +115,21 @@
   }
 
   /**
+   * Check if an element is currently visible in the viewport
+   * @param {HTMLElement} el - The element to check
+   * @returns {boolean} True if element is in viewport
+   */
+  function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.bottom > 0 &&
+      rect.left < (window.innerWidth || document.documentElement.clientWidth) &&
+      rect.right > 0
+    );
+  }
+
+  /**
    * Reinitialize animations - useful when filter changes or new content is added
    * Resets stagger delays and re-observes visible elements
    */
@@ -135,15 +154,25 @@
       applyStaggerDelays(projectGrid);
     }
 
-    // Create new observer and observe visible elements
-    observer = new IntersectionObserver(handleIntersection, OBSERVER_OPTIONS);
+    // Wait for layout to update before checking viewport
+    requestAnimationFrame(() => {
+      // Create new observer and observe visible elements
+      observer = new IntersectionObserver(handleIntersection, OBSERVER_OPTIONS);
 
-    // Observe all elements that are visible (not filtered out)
-    animElements.forEach(el => {
-      const style = window.getComputedStyle(el);
-      if (style.display !== 'none') {
-        observer.observe(el);
-      }
+      // Observe all elements that are visible (not filtered out)
+      // Elements already in viewport get is-visible immediately
+      animElements.forEach(el => {
+        const style = window.getComputedStyle(el);
+        if (style.display !== 'none') {
+          if (isInViewport(el)) {
+            // Already in viewport - trigger animation immediately
+            el.classList.add('is-visible');
+          } else {
+            // Not in viewport yet - observe for scroll
+            observer.observe(el);
+          }
+        }
+      });
     });
   }
 
