@@ -160,22 +160,32 @@
       observer = new IntersectionObserver(handleIntersection, OBSERVER_OPTIONS);
 
       // Observe all elements that are visible (not filtered out)
-      // Elements already in viewport get is-visible after a tiny delay for animation to work
+      const viewportElements = [];
+      const offscreenElements = [];
+
       animElements.forEach(el => {
         const style = window.getComputedStyle(el);
         if (style.display !== 'none') {
           if (isInViewport(el)) {
-            // Already in viewport - trigger animation after brief delay
-            // This ensures the initial hidden state is rendered first
-            requestAnimationFrame(() => {
-              el.classList.add('is-visible');
-            });
+            viewportElements.push(el);
           } else {
-            // Not in viewport yet - observe for scroll
+            offscreenElements.push(el);
             observer.observe(el);
           }
         }
       });
+
+      // Trigger animation for viewport elements after a small delay
+      // This ensures the initial hidden state is rendered first
+      if (viewportElements.length > 0) {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            viewportElements.forEach(el => {
+              el.classList.add('is-visible');
+            });
+          });
+        });
+      }
     });
   }
 
