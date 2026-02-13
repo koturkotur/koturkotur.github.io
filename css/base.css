@@ -21,7 +21,12 @@ body {
   line-height: var(--leading-normal);
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme transition - only apply when explicitly switching themes */
+body.theme-transitioning,
+body.theme-transitioning * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
 body.menu-open {

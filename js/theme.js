@@ -111,14 +111,13 @@
    * Initializes the theme system
    */
   function init() {
-    // Get and apply initial theme
+    // Get initial theme (inline script should have already applied it, but we confirm here)
     const initialTheme = getInitialTheme();
     applyTheme(initialTheme);
 
     // Find the toggle button
     const toggleButton = document.getElementById('theme-toggle');
     if (!toggleButton) {
-      console.warn('Theme toggle button not found (#theme-toggle)');
       return;
     }
 
@@ -131,17 +130,12 @@
     // Listen for system preference changes
     if (window.matchMedia) {
       const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
-
-      // Modern API (addEventListener)
+      const handler = (event) => handleSystemPreferenceChange(event, toggleButton);
+      
       if (mediaQuery.addEventListener) {
-        mediaQuery.addEventListener('change', (event) => {
-          handleSystemPreferenceChange(event, toggleButton);
-        });
+        mediaQuery.addEventListener('change', handler);
       } else {
-        // Legacy API (addListener) for older browsers
-        mediaQuery.addListener((event) => {
-          handleSystemPreferenceChange(event, toggleButton);
-        });
+        mediaQuery.addListener(handler);
       }
     }
   }
