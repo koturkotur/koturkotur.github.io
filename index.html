@@ -372,6 +372,21 @@
 
     </div><!-- /project-grid -->
 
+    <!-- Hide non-matching cards immediately to prevent flash on filtered reload -->
+    <script>
+      (function() {
+        var hash = window.location.hash.replace('#', '');
+        if (!hash || hash === 'all') return;
+        var cards = document.querySelectorAll('.project-card');
+        for (var i = 0; i < cards.length; i++) {
+          var cats = (cards[i].getAttribute('data-categories') || '').split(' ');
+          if (cats.indexOf(hash) === -1) {
+            cards[i].style.display = 'none';
+          }
+        }
+      })();
+    </script>
+
   </main>
 
   <!-- Footer -->
