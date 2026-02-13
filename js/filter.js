@@ -238,6 +238,13 @@
     // Apply the filter
     filterCards(filterValue);
 
+    // Save filter to URL hash for persistence on reload
+    if (filterValue === 'all') {
+      history.replaceState(null, '', window.location.pathname);
+    } else {
+      history.replaceState(null, '', '#' + filterValue);
+    }
+
     // Scroll to top of page
     window.scrollTo({
       top: 0,
@@ -327,13 +334,20 @@
     attachDropdownHandlers();
     attachPillDragScroll();
 
-    // Set initial active state UI only (don't re-filter or reinitialize animations)
-    const allFilter = filterPills.find(p => p.dataset.filter === 'all') ||
-                      dropdownItems.find(i => i.dataset.filter === 'all');
-    if (allFilter) {
-      updatePillStates('all');
-      updateDropdownItemStates('all');
-      updateDropdownLabel('all');
+    // Check URL hash for saved filter
+    const hash = window.location.hash.replace('#', '');
+    const savedFilter = hash && (filterPills.some(p => p.dataset.filter === hash) ||
+                                  dropdownItems.some(i => i.dataset.filter === hash))
+                        ? hash : 'all';
+
+    // Apply saved filter state
+    updatePillStates(savedFilter);
+    updateDropdownItemStates(savedFilter);
+    updateDropdownLabel(savedFilter);
+
+    // If a non-default filter was saved, apply it immediately
+    if (savedFilter !== 'all') {
+      filterCards(savedFilter);
     }
   }
 
