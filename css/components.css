@@ -396,7 +396,8 @@
 }
 
 .filter-dropdown-item.active {
-  color: var(--accent);
+  background: var(--accent);
+  color: white;
 }
 
 /* ==========================================================================
