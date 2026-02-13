@@ -96,13 +96,19 @@
       return;
     }
 
-    // Create IntersectionObserver
-    observer = new IntersectionObserver(handleIntersection, OBSERVER_OPTIONS);
-
     // Find all animation elements
     const animElements = document.querySelectorAll(ANIMATION_CLASSES.map(cls => `.${cls}`).join(', '));
 
-    // Observe all animation elements (including project cards)
+    // Handle scroll position restoration
+    // If we're at the very top, ensure we stay there
+    if (window.scrollY < 20) {
+      window.scrollTo(0, 0);
+    }
+
+    // Create IntersectionObserver
+    observer = new IntersectionObserver(handleIntersection, OBSERVER_OPTIONS);
+
+    // Observe all animation elements
     animElements.forEach(el => {
       observer.observe(el);
     });
