@@ -345,9 +345,20 @@
     updateDropdownItemStates(savedFilter);
     updateDropdownLabel(savedFilter);
 
-    // If a non-default filter was saved, apply it immediately
+    // If a non-default filter was saved, sync card display states
+    // (inline script already hid non-matching cards, just sync classes)
     if (savedFilter !== 'all') {
-      filterCards(savedFilter);
+      projectCards.forEach(card => {
+        const categories = (card.dataset.categories || '').split(' ').filter(Boolean);
+        const shouldShow = categories.includes(savedFilter);
+        if (shouldShow) {
+          card.classList.remove(HIDDEN_CLASS);
+          card.style.display = '';
+        } else {
+          card.classList.add(HIDDEN_CLASS);
+          card.style.display = 'none';
+        }
+      });
     }
   }
 
