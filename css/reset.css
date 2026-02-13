@@ -17,11 +17,14 @@
   padding: 0;
 }
 
-/* Smooth scrolling for the entire document */
 html {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Only smooth scroll when navigating via anchor links, not on page load */
+html:focus-within {
+  scroll-behavior: smooth;
 }
 
 /* Body should take at least full viewport height */
