@@ -36,7 +36,7 @@
   line-height: 1.7;
   color: var(--text-secondary);
   margin-bottom: var(--space-md);
-  max-width: 640px;
+  max-width: 60ch;
 }
 
 /* Intro Section - Text + Image side by side */
@@ -225,7 +225,7 @@
   font-size: var(--text-xl);
   line-height: 1.5;
   color: var(--text-secondary);
-  max-width: 500px;
+  max-width: 50ch;
 }
 
 /* Contact Grid */

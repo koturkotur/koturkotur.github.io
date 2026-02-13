@@ -17,30 +17,15 @@
 }
 
 .container {
-  /* Centered content container */
+  /* Full-width container with consistent edge padding */
   width: 100%;
-  margin: 0 auto;
-  padding: 0 12px; /* Mobile padding */
+  padding: 0 12px; /* Mobile padding - matches project grid */
 }
 
-/* Tablet: 768px – 1199px */
+/* Tablet+ */
 @media (min-width: 768px) {
   .container {
-    padding: 0 var(--space-md);
-  }
-}
-
-/* Desktop: 1200px – 1699px */
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1200px;
-  }
-}
-
-/* XLarge: ≥ 1700px */
-@media (min-width: 1700px) {
-  .container {
-    max-width: 1400px;
+    padding: 0 var(--space-md); /* Matches project grid edge padding */
   }
 }
 
