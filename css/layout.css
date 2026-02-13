@@ -70,7 +70,7 @@
   .project-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-md);
-    padding: var(--space-4xl) var(--space-md) 0; /* Match gap for edge spacing + top space */
+    padding: var(--space-xl) var(--space-md) 0; /* Tighter top space on desktop */
     width: 100%;
   }
 }
@@ -80,7 +80,7 @@
   .project-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-md);
-    padding: var(--space-4xl) var(--space-md) 0; /* Match gap for edge spacing + top space */
+    padding: var(--space-xl) var(--space-md) 0; /* Tighter top space on desktop */
     width: 100%;
   }
 }
@@ -105,6 +105,12 @@
   pointer-events: auto; /* re-enable clicks on actual filter elements */
 }
 
+@media (min-width: 1200px) {
+  .filter-bar {
+    bottom: 40px;
+  }
+}
+
 /* ==========================================================================
    SECTION LAYOUTS
    Standard section spacing and headers
@@ -124,10 +130,8 @@
    ========================================================================== */
 
 .footer {
-  background: var(--bg-elevated);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  padding: var(--space-3xl) var(--space-xl);
   margin-top: var(--space-3xl);
+  border-top: 1px solid var(--border);
 }
 
 /* ==========================================================================
@@ -419,6 +423,5 @@
   
   .footer {
     margin-top: var(--space-xl);
-    border-radius: 0;
   }
 }

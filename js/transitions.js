@@ -12,6 +12,33 @@
    * Initializes page transitions
    */
   function init() {
+    var currentPath = window.location.pathname;
+    var previousPath = sessionStorage.getItem('lastPagePath');
+
+    // Only restore scroll position on RELOAD (same page).
+    // When navigating from a different page, start at top.
+    if (previousPath === currentPath) {
+      var savedScroll = sessionStorage.getItem('scrollY_' + currentPath);
+      if (savedScroll !== null) {
+        window.scrollTo(0, parseInt(savedScroll, 10));
+      }
+    } else {
+      // Different page — start at top
+      window.scrollTo(0, 0);
+    }
+
+    // Always record which page we're on now
+    sessionStorage.setItem('lastPagePath', currentPath);
+
+    // Continuously save scroll position so it's available on reload
+    var scrollSaveTimer;
+    window.addEventListener('scroll', function() {
+      clearTimeout(scrollSaveTimer);
+      scrollSaveTimer = setTimeout(function() {
+        sessionStorage.setItem('scrollY_' + window.location.pathname, window.scrollY);
+      }, 100);
+    }, { passive: true });
+
     // Intercept internal link clicks to zoom out
     document.addEventListener('click', (event) => {
       const link = event.target.closest('a');
@@ -39,21 +66,33 @@
                          !href.includes('://');
 
       if (isInternal) {
-        // Only trigger if we're actually going to a different URL
         const currentUrl = window.location.pathname;
         const targetUrl = new URL(href, window.location.origin).pathname;
-        
+
+        // If it's just an anchor scroll on the same page, let it happen naturally
         if (currentUrl === targetUrl && href.includes('#')) {
-          return; // Just an anchor scroll
+          return;
         }
 
-        // Prevent default navigation
-        event.preventDefault();
+        // Check if this is the logo (nav-logo class) - scroll to top without reload
+        const isLogo = link.classList.contains('nav-logo');
+        if (currentUrl === targetUrl && isLogo) {
+          event.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
 
-        // Add transition class
+        // If clicking a link to the SAME page (reload scenario), do a hard reload without animation
+        if (currentUrl === targetUrl) {
+          event.preventDefault();
+          window.location.reload();
+          return;
+        }
+
+        // Different page — use zoom animation
+        event.preventDefault();
         document.body.classList.add(TRANSITION_CLASS);
 
-        // Navigate after animation completes
         setTimeout(() => {
           window.location.href = href;
         }, TRANSITION_DURATION);

@@ -240,6 +240,20 @@ body.page-transitioning {
   cursor: wait;
 }
 
+/* Hide filter bar during page transitions */
+.page-transitioning .filter-bar {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Hide filter bar when mobile menu is open */
+.menu-open .filter-bar {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
 /* ------------------------------------------
    Theme Transition
    Smooth color transitions when switching themes

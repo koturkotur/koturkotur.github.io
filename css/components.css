@@ -707,53 +707,74 @@
 
 /* ==========================================================================
    8. FOOTER
+   Velvele-inspired minimal horizontal bar
    ========================================================================== */
 
-.footer-content {
+.footer-bar {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-  gap: var(--space-xl);
-}
-
-.footer-heading {
-  font-size: var(--text-3xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
-  margin-bottom: var(--space-lg);
-}
-
-.footer-links {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-  align-items: center;
-}
-
-.footer-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
-  font-size: var(--text-base);
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: var(--transition-fast);
-}
-
-.footer-link:hover {
-  color: var(--accent);
-}
-
-.footer-bottom {
-  padding-top: var(--space-xl);
-  border-top: 1px solid var(--border);
-  width: 100%;
+  justify-content: space-between;
+  padding: 0 var(--space-md);
+  height: 64px;
+  position: relative;
 }
 
 .footer-copyright {
   font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
   color: var(--text-tertiary);
+  margin: 0;
+}
+
+.footer-cta {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-tertiary);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.footer-link {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-tertiary);
+  text-decoration: none;
+  transition: color 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+.footer-link:hover {
+  color: var(--text-primary);
+}
+
+/* Mobile: stack vertically, hide CTA */
+@media (max-width: 767px) {
+  .footer-bar {
+    flex-direction: column;
+    height: auto;
+    padding: var(--space-md);
+    gap: var(--space-sm);
+    align-items: center;
+  }
+
+  .footer-cta {
+    position: static;
+    transform: none;
+    order: -1;
+  }
+
+  .footer-links {
+    gap: var(--space-md);
+  }
 }
 
 /* ==========================================================================
