@@ -142,9 +142,10 @@
       observer.disconnect();
     }
 
-    // Remove is-visible from all animation elements to reset them
+    // Remove is-visible and disable transitions so reset is instant
     const animElements = document.querySelectorAll(ANIMATION_CLASSES.map(cls => `.${cls}`).join(', '));
     animElements.forEach(el => {
+      el.style.transition = 'none';
       el.classList.remove('is-visible');
     });
 
@@ -154,34 +155,30 @@
       applyStaggerDelays(projectGrid);
     }
 
-    // Wait for CSS to apply the hidden state before triggering animations
-    setTimeout(() => {
-      // Create new observer and observe visible elements
-      observer = new IntersectionObserver(handleIntersection, OBSERVER_OPTIONS);
-
-      // Observe all elements that are visible (not filtered out)
-      const viewportElements = [];
-      const offscreenElements = [];
-
+    // Force the browser to apply the hidden state immediately
+    requestAnimationFrame(() => {
+      // Re-enable transitions
       animElements.forEach(el => {
-        const style = window.getComputedStyle(el);
-        if (style.display !== 'none') {
-          if (isInViewport(el)) {
-            viewportElements.push(el);
-          } else {
-            offscreenElements.push(el);
-            observer.observe(el);
-          }
-        }
+        el.style.transition = '';
       });
 
-      // Trigger animation for viewport elements
-      if (viewportElements.length > 0) {
-        viewportElements.forEach(el => {
-          el.classList.add('is-visible');
+      // Create new observer
+      observer = new IntersectionObserver(handleIntersection, OBSERVER_OPTIONS);
+
+      // Check each visible element
+      requestAnimationFrame(() => {
+        animElements.forEach(el => {
+          const style = window.getComputedStyle(el);
+          if (style.display !== 'none') {
+            if (isInViewport(el)) {
+              el.classList.add('is-visible');
+            } else {
+              observer.observe(el);
+            }
+          }
         });
-      }
-    }, 50);
+      });
+    });
   }
 
   /**
