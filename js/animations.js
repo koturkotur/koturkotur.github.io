@@ -154,8 +154,8 @@
       applyStaggerDelays(projectGrid);
     }
 
-    // Wait for layout to update before checking viewport
-    requestAnimationFrame(() => {
+    // Wait for CSS to apply the hidden state before triggering animations
+    setTimeout(() => {
       // Create new observer and observe visible elements
       observer = new IntersectionObserver(handleIntersection, OBSERVER_OPTIONS);
 
@@ -175,16 +175,13 @@
         }
       });
 
-      // Trigger animation for viewport elements after a small delay
-      // Using setTimeout ensures the browser renders the hidden state first
+      // Trigger animation for viewport elements
       if (viewportElements.length > 0) {
-        setTimeout(() => {
-          viewportElements.forEach(el => {
-            el.classList.add('is-visible');
-          });
-        }, 10);
+        viewportElements.forEach(el => {
+          el.classList.add('is-visible');
+        });
       }
-    });
+    }, 50);
   }
 
   /**
