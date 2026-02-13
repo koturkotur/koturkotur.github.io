@@ -327,11 +327,13 @@
     attachDropdownHandlers();
     attachPillDragScroll();
 
-    // Set initial active state (default to 'all' if exists)
+    // Set initial active state UI only (don't re-filter or reinitialize animations)
     const allFilter = filterPills.find(p => p.dataset.filter === 'all') ||
                       dropdownItems.find(i => i.dataset.filter === 'all');
     if (allFilter) {
-      handleFilterSelect('all', allFilter);
+      updatePillStates('all');
+      updateDropdownItemStates('all');
+      updateDropdownLabel('all');
     }
   }
 
