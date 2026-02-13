@@ -176,15 +176,13 @@
       });
 
       // Trigger animation for viewport elements after a small delay
-      // This ensures the initial hidden state is rendered first
+      // Using setTimeout ensures the browser renders the hidden state first
       if (viewportElements.length > 0) {
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            viewportElements.forEach(el => {
-              el.classList.add('is-visible');
-            });
+        setTimeout(() => {
+          viewportElements.forEach(el => {
+            el.classList.add('is-visible');
           });
-        });
+        }, 10);
       }
     });
   }
