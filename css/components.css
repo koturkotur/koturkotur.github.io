@@ -304,12 +304,12 @@
   transition: var(--transition-fast);
 }
 
-.filter-pill:hover {
+.filter-pill:hover:not(.active) {
   color: var(--text-primary);
   background: rgba(255, 255, 255, 0.05);
 }
 
-[data-theme="light"] .filter-pill:hover {
+[data-theme="light"] .filter-pill:hover:not(.active) {
   background: rgba(0, 0, 0, 0.05);
 }
 
@@ -390,7 +390,7 @@
   transition: var(--transition-fast);
 }
 
-.filter-dropdown-item:hover {
+.filter-dropdown-item:hover:not(.active) {
   background: var(--bg-surface);
   color: var(--text-primary);
 }
