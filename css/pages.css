@@ -1,0 +1,307 @@
+/* ==========================================================================
+   PAGES.CSS
+   Styles for About and Contact pages
+   ========================================================================== */
+
+/* ==========================================================================
+   ABOUT PAGE
+   ========================================================================== */
+
+/* Hero */
+.about-hero {
+  padding: var(--space-3xl) 0 var(--space-2xl);
+}
+
+.about-heading {
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+/* Subtitle */
+.about-subtitle {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-xl);
+}
+
+/* Paragraphs */
+.about-paragraph {
+  font-size: var(--text-lg);
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  max-width: 640px;
+}
+
+/* Intro Section - Text + Image side by side */
+.about-intro {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+  padding-bottom: var(--space-3xl);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--space-3xl);
+}
+
+@media (min-width: 768px) {
+  .about-intro {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+}
+
+.about-intro-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+}
+
+/* Services Grid */
+.about-services {
+  padding-bottom: var(--space-3xl);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--space-3xl);
+}
+
+.about-services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .about-services-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+  }
+}
+
+.about-service-item {
+  padding-bottom: var(--space-lg);
+}
+
+.about-service-title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.about-service-desc {
+  font-size: var(--text-base);
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* Experience Section */
+.about-experience {
+  padding-bottom: var(--space-3xl);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--space-3xl);
+}
+
+.about-experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.about-experience-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xs);
+  padding: var(--space-lg) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.about-experience-item:last-child {
+  border-bottom: none;
+}
+
+@media (min-width: 768px) {
+  .about-experience-item {
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-xl);
+    align-items: baseline;
+  }
+}
+
+.about-experience-year {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  font-weight: var(--font-weight-medium);
+}
+
+.about-experience-role {
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.about-experience-company {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  margin-top: var(--space-xs);
+}
+
+/* Full Width Image */
+.about-image-full {
+  margin-bottom: var(--space-3xl);
+}
+
+.about-image-full img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+}
+
+/* CTA Section */
+.about-cta {
+  text-align: center;
+  padding: var(--space-3xl) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-cta-heading {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  letter-spacing: -0.02em;
+}
+
+.about-cta .about-paragraph {
+  text-align: center;
+}
+
+.about-cta-button {
+  display: inline-block;
+  margin-top: var(--space-lg);
+  padding: 16px 40px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: var(--radius-full);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.about-cta-button:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+
+/* ==========================================================================
+   CONTACT PAGE
+   ========================================================================== */
+
+/* Hero */
+.contact-hero {
+  padding: var(--space-3xl) 0 var(--space-2xl);
+}
+
+.contact-heading {
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.contact-subtitle {
+  font-size: var(--text-xl);
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 500px;
+}
+
+/* Contact Grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  padding-bottom: var(--space-3xl);
+}
+
+@media (min-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+  }
+}
+
+/* Contact Section */
+.contact-section {
+  padding: var(--space-2xl) 0;
+  border-top: 1px solid var(--border);
+}
+
+.contact-section:first-child {
+  border-top: 1px solid var(--border);
+}
+
+@media (min-width: 768px) {
+  .contact-section:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Contact Label */
+.contact-label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-lg);
+}
+
+/* Contact Info */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* Contact Links */
+.contact-link {
+  font-size: var(--text-lg);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  width: fit-content;
+}
+
+.contact-link:hover {
+  color: var(--accent);
+}
+
+.contact-link--large {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.02em;
+}
+
+/* Contact Text */
+.contact-text {
+  font-size: var(--text-lg);
+  color: var(--text-primary);
+}
+
+.contact-text--secondary {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+}
