@@ -237,6 +237,18 @@
 
     // Apply the filter
     filterCards(filterValue);
+
+    // Scroll to top of filter bar
+    const filterBar = document.querySelector('.filter-bar');
+    if (filterBar) {
+      const header = document.querySelector('.nav-header');
+      const headerHeight = header ? header.offsetHeight : 0;
+      const filterBarTop = filterBar.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+      window.scrollTo({
+        top: filterBarTop,
+        behavior: 'smooth'
+      });
+    }
   }
 
   /**
