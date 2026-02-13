@@ -53,7 +53,9 @@
       dragStartX = event.clientX;
       dragStartScrollLeft = filterPillsContainer.scrollLeft;
       filterPillsContainer.classList.add('is-dragging');
-      filterPillsContainer.setPointerCapture(event.pointerId);
+      if (event.pointerType !== 'mouse') {
+        filterPillsContainer.setPointerCapture(event.pointerId);
+      }
     });
 
     filterPillsContainer.addEventListener('pointermove', (event) => {
@@ -69,7 +71,7 @@
       if (!isDraggingPills) return;
       isDraggingPills = false;
       filterPillsContainer.classList.remove('is-dragging');
-      if (event && event.pointerId !== undefined) {
+      if (event && event.pointerId !== undefined && event.pointerType !== 'mouse') {
         filterPillsContainer.releasePointerCapture(event.pointerId);
       }
       setTimeout(() => {
