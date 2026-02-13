@@ -160,13 +160,16 @@
       observer = new IntersectionObserver(handleIntersection, OBSERVER_OPTIONS);
 
       // Observe all elements that are visible (not filtered out)
-      // Elements already in viewport get is-visible immediately
+      // Elements already in viewport get is-visible after a tiny delay for animation to work
       animElements.forEach(el => {
         const style = window.getComputedStyle(el);
         if (style.display !== 'none') {
           if (isInViewport(el)) {
-            // Already in viewport - trigger animation immediately
-            el.classList.add('is-visible');
+            // Already in viewport - trigger animation after brief delay
+            // This ensures the initial hidden state is rendered first
+            requestAnimationFrame(() => {
+              el.classList.add('is-visible');
+            });
           } else {
             // Not in viewport yet - observe for scroll
             observer.observe(el);
