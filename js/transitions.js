@@ -12,15 +12,7 @@
    * Initializes page transitions
    */
   function init() {
-    // 1. Zoom in the page on load
-    document.addEventListener('DOMContentLoaded', () => {
-      // Small delay to ensure browser has started rendering the initial state
-      setTimeout(() => {
-        document.body.classList.remove(TRANSITION_CLASS);
-      }, 50);
-    });
-
-    // 2. Intercept internal link clicks to zoom out
+    // Intercept internal link clicks to zoom out
     document.addEventListener('click', (event) => {
       const link = event.target.closest('a');
       if (!link) return;
@@ -31,7 +23,7 @@
       // - Empty links or anchors
       // - External links
       // - Links opening in new tabs
-      // - File downloads (not likely here but good practice)
+      // - Same-page anchor links (e.g., #about)
       if (!href || 
           href.startsWith('#') || 
           href.startsWith('mailto:') || 
@@ -47,6 +39,14 @@
                          !href.includes('://');
 
       if (isInternal) {
+        // Only trigger if we're actually going to a different URL
+        const currentUrl = window.location.pathname;
+        const targetUrl = new URL(href, window.location.origin).pathname;
+        
+        if (currentUrl === targetUrl && href.includes('#')) {
+          return; // Just an anchor scroll
+        }
+
         // Prevent default navigation
         event.preventDefault();
 
@@ -60,12 +60,11 @@
       }
     });
 
-    // 3. Handle back/forward buttons (popstate)
-    // Ensures the page is visible if user clicks "Back"
+    // Handle back/forward buttons (popstate)
+    // Ensures the page is visible if user clicks "Back" or returns via history
     window.addEventListener('pageshow', (event) => {
-      if (event.persisted) {
-        document.body.classList.remove(TRANSITION_CLASS);
-      }
+      // Always remove the class on show to ensure page is visible
+      document.body.classList.remove(TRANSITION_CLASS);
     });
   }
 
