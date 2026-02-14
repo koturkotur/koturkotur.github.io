@@ -25,6 +25,8 @@
   let dragStartX = 0;
   let dragStartScrollLeft = 0;
   let hasDraggedPills = false;
+  let currentFilterValue = 'all';
+  let filterActionId = 0;
 
   /**
    * Cache DOM references for better performance
@@ -194,29 +196,34 @@
       // Determine if card should be shown
       const shouldShow = filterValue === 'all' || categoryList.includes(filterValue);
 
-      if (shouldShow) {
-        // Card should be shown
-        card.classList.remove(HIDDEN_CLASS);
-        // After animation completes, ensure display is set
-        setTimeout(() => {
-          card.style.display = '';
-        }, ANIMATION_DURATION);
-      } else {
-        // Card should be hidden
-        card.classList.add(HIDDEN_CLASS);
-        // After animation completes, set display none
-        setTimeout(() => {
-          card.style.display = 'none';
-        }, ANIMATION_DURATION);
-      }
+      // Ensure filter-hidden never gets stuck
+      card.classList.remove(HIDDEN_CLASS);
+      card.style.display = shouldShow ? '' : 'none';
     });
+  }
 
-    // Reinitialize animations on visible cards after transition
-    setTimeout(() => {
+  function runFilterTransition(filterValue) {
+    const actionId = ++filterActionId;
+    document.body.classList.add('is-filtering');
+
+    // Apply DOM changes on the next frame (after scroll-to-top has painted)
+    requestAnimationFrame(() => {
+      if (actionId !== filterActionId) return;
+
+      filterCards(filterValue);
+
       if (window.AnimationSystem && typeof window.AnimationSystem.reinitialize === 'function') {
         window.AnimationSystem.reinitialize();
       }
-    }, ANIMATION_DURATION);
+
+      // Wait for AnimationSystem's internal RAFs, then show the grid
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (actionId !== filterActionId) return;
+          document.body.classList.remove('is-filtering');
+        });
+      });
+    });
   }
 
   /**
@@ -225,6 +232,19 @@
    * @param {HTMLElement} clickedElement - The element that was clicked
    */
   function handleFilterSelect(filterValue, clickedElement) {
+    // If user clicks the currently active filter, just jump to top (no re-filter)
+    if (filterValue === currentFilterValue) {
+      if (clickedElement.classList.contains('filter-dropdown-item')) {
+        closeDropdown();
+      }
+      if (window.scrollY > 0) {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
+      return;
+    }
+
+    currentFilterValue = filterValue;
+
     // Update all UI states
     updatePillStates(filterValue);
     updateDropdownItemStates(filterValue);
@@ -235,9 +255,6 @@
       closeDropdown();
     }
 
-    // Apply the filter
-    filterCards(filterValue);
-
     // Save filter to URL hash for persistence on reload
     if (filterValue === 'all') {
       history.replaceState(null, '', window.location.pathname);
@@ -245,11 +262,11 @@
       history.replaceState(null, '', '#' + filterValue);
     }
 
-    // Scroll to top of page
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    if (window.scrollY > 0) {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+
+    runFilterTransition(filterValue);
   }
 
   /**
@@ -335,31 +352,26 @@
     attachPillDragScroll();
 
     // Check URL hash for saved filter
-    const hash = window.location.hash.replace('#', '');
+    const resetFilter = sessionStorage.getItem('resetFilter') === '1';
+    if (resetFilter) {
+      sessionStorage.removeItem('resetFilter');
+      history.replaceState(null, '', window.location.pathname);
+    }
+
+    const hash = resetFilter ? '' : window.location.hash.replace('#', '');
     const savedFilter = hash && (filterPills.some(p => p.dataset.filter === hash) ||
                                   dropdownItems.some(i => i.dataset.filter === hash))
                         ? hash : 'all';
+
+    currentFilterValue = savedFilter;
 
     // Apply saved filter state
     updatePillStates(savedFilter);
     updateDropdownItemStates(savedFilter);
     updateDropdownLabel(savedFilter);
 
-    // If a non-default filter was saved, sync card display states
-    // (inline script already hid non-matching cards, just sync classes)
-    if (savedFilter !== 'all') {
-      projectCards.forEach(card => {
-        const categories = (card.dataset.categories || '').split(' ').filter(Boolean);
-        const shouldShow = categories.includes(savedFilter);
-        if (shouldShow) {
-          card.classList.remove(HIDDEN_CLASS);
-          card.style.display = '';
-        } else {
-          card.classList.add(HIDDEN_CLASS);
-          card.style.display = 'none';
-        }
-      });
-    }
+    // Sync card display states to the saved filter (no animation on initial load)
+    filterCards(savedFilter);
   }
 
   // Initialize when DOM is ready

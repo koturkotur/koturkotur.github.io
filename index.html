@@ -377,6 +377,12 @@
     <!-- Hide non-matching cards immediately to prevent flash on filtered reload -->
     <script>
       (function() {
+        var resetFilter = sessionStorage.getItem('resetFilter') === '1';
+        if (resetFilter) {
+          sessionStorage.removeItem('resetFilter');
+          history.replaceState(null, '', window.location.pathname);
+          return;
+        }
         var hash = window.location.hash.replace('#', '');
         if (!hash || hash === 'all') return;
         var cards = document.querySelectorAll('.project-card');

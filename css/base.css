@@ -33,6 +33,11 @@ body.menu-open {
   background-color: #000;
 }
 
+/* Prevent scroll anchoring jitter during filter changes */
+body.is-filtering {
+  overflow-anchor: none;
+}
+
 /* ============================================
    Headings
    ============================================ */

@@ -5,7 +5,7 @@
 (function() {
   'use strict';
 
-  const TRANSITION_DURATION = 600; // Match CSS transition time
+  const TRANSITION_DURATION = 0;
   const TRANSITION_CLASS = 'page-transitioning';
 
   /**
@@ -14,10 +14,14 @@
   function init() {
     var currentPath = window.location.pathname;
     var previousPath = sessionStorage.getItem('lastPagePath');
+    var navTriggered = sessionStorage.getItem('navTriggered') === '1';
 
-    // Only restore scroll position on RELOAD (same page).
-    // When navigating from a different page, start at top.
-    if (previousPath === currentPath) {
+    // If navigation was triggered by clicking a link, always start at top
+    if (navTriggered) {
+      window.scrollTo(0, 0);
+      sessionStorage.removeItem('navTriggered');
+    } else if (previousPath === currentPath) {
+      // Only restore scroll position on reload (same page).
       var savedScroll = sessionStorage.getItem('scrollY_' + currentPath);
       if (savedScroll !== null) {
         window.scrollTo(0, parseInt(savedScroll, 10));
@@ -74,28 +78,24 @@
           return;
         }
 
-        // Check if this is the logo (nav-logo class) - scroll to top without reload
-        const isLogo = link.classList.contains('nav-logo');
-        if (currentUrl === targetUrl && isLogo) {
-          event.preventDefault();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          return;
-        }
-
         // If clicking a link to the SAME page (reload scenario), do a hard reload without animation
         if (currentUrl === targetUrl) {
           event.preventDefault();
+          if (link.classList.contains('nav-logo')) {
+            sessionStorage.setItem('resetFilter', '1');
+          }
+          sessionStorage.setItem('navTriggered', '1');
           window.location.reload();
           return;
         }
 
-        // Different page — use zoom animation
+        // Different page — simple navigation (no zoom)
         event.preventDefault();
-        document.body.classList.add(TRANSITION_CLASS);
-
-        setTimeout(() => {
-          window.location.href = href;
-        }, TRANSITION_DURATION);
+        sessionStorage.setItem('navTriggered', '1');
+        if (link.classList.contains('nav-logo')) {
+          sessionStorage.setItem('resetFilter', '1');
+        }
+        window.location.href = href;
       }
     });
 

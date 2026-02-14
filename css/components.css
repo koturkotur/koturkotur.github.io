@@ -91,18 +91,10 @@
   transform: translateY(0) !important;
 }
 
-/* Page Zoom Out Effect */
+/* Page wrapper base */
 #page-wrapper {
-  transform-origin: center top;
   background: var(--bg-primary);
   min-height: 100vh;
-}
-
-.menu-open #page-wrapper {
-  transform: scale(0.94) translateY(20px);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  pointer-events: none;
 }
 
 .nav-header.menu-open .nav-bar {

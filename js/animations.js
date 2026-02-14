@@ -21,10 +21,15 @@
     rootMargin: '0px 0px 0px 0px'
   };
 
+  const STAGGER_STEP = 0.08; // seconds
+  const STAGGER_RESET_MS = 200;
+
   // Check for reduced motion preference
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   let observer = null;
+  let staggerIndex = 0;
+  let staggerResetTimer = null;
 
   /**
    * Calculate number of grid columns based on viewport width
@@ -46,24 +51,8 @@
     if (!grid) return;
 
     const allCards = Array.from(grid.children);
-    const columns = getGridColumns();
-
-    // Get only visible cards and apply stagger based on their visible index
-    const visibleCards = allCards.filter(card => {
-      const style = window.getComputedStyle(card);
-      return style.display !== 'none';
-    });
-
-    // Reset all cards first
     allCards.forEach(card => {
       card.style.transitionDelay = '';
-    });
-
-    // Apply stagger to visible cards only
-    visibleCards.forEach((card, visibleIndex) => {
-      const columnIndex = visibleIndex % columns;
-      const delay = columnIndex * 0.1;
-      card.style.transitionDelay = `${delay}s`;
     });
   }
 
@@ -72,13 +61,26 @@
    * @param {IntersectionObserverEntry[]} entries
    */
   function handleIntersection(entries) {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        // Unobserve after animation triggers (animate once only)
-        observer.unobserve(entry.target);
-      }
+    const toShow = entries.filter(entry => entry.isIntersecting).map(entry => entry.target);
+    if (!toShow.length) return;
+
+    // Keep order based on DOM position
+    toShow.sort((a, b) => {
+      if (a === b) return 0;
+      return a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1;
     });
+
+    toShow.forEach(el => {
+      el.style.transitionDelay = `${staggerIndex * STAGGER_STEP}s`;
+      staggerIndex += 1;
+      el.classList.add('is-visible');
+      observer.unobserve(el);
+    });
+
+    clearTimeout(staggerResetTimer);
+    staggerResetTimer = setTimeout(() => {
+      staggerIndex = 0;
+    }, STAGGER_RESET_MS);
   }
 
   /**
@@ -113,11 +115,11 @@
       observer.observe(el);
     });
 
-    // Apply stagger delays to project grid cards
-    const projectGrid = document.querySelector('.project-grid');
-    if (projectGrid) {
-      applyStaggerDelays(projectGrid);
-    }
+      // Reset transition delays on cards
+      const projectGrid = document.querySelector('.project-grid');
+      if (projectGrid) {
+        applyStaggerDelays(projectGrid);
+      }
   }
 
   /**
@@ -155,7 +157,7 @@
       el.classList.remove('is-visible');
     });
 
-    // Re-apply stagger delays to project grid cards
+    // Reset transition delays to avoid stale values
     const projectGrid = document.querySelector('.project-grid');
     if (projectGrid) {
       applyStaggerDelays(projectGrid);
@@ -173,15 +175,28 @@
 
       // Check each visible element
       requestAnimationFrame(() => {
+        const visibleNow = [];
         animElements.forEach(el => {
           const style = window.getComputedStyle(el);
           if (style.display !== 'none') {
             if (isInViewport(el)) {
-              el.classList.add('is-visible');
+              visibleNow.push(el);
             } else {
               observer.observe(el);
             }
           }
+        });
+
+        visibleNow.sort((a, b) => {
+          if (a === b) return 0;
+          return a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1;
+        });
+
+        let localIndex = 0;
+        visibleNow.forEach(el => {
+          el.style.transitionDelay = `${localIndex * STAGGER_STEP}s`;
+          localIndex += 1;
+          el.classList.add('is-visible');
         });
       });
     });
