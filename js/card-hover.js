@@ -9,8 +9,6 @@
 
   // Configuration constants
   const HOVER_CLASS = 'is-hovered';
-  const MAX_PARALLAX_OFFSET = 5; // px - maximum movement in any direction
-  const PARALLAX_STRENGTH = 0.02; // multiplier for mouse position
 
   // Check if device supports hover
   const supportsHover = window.matchMedia('(hover: hover)').matches;
@@ -18,14 +16,44 @@
   // DOM element references
   let projectCards = [];
 
-  // Track active cards and their animation frames
-  const activeCards = new Map(); // cardElement -> { rafId, targetX, targetY, currentX, currentY }
 
   // Mobile center highlight tracking
   let isCenterTicking = false;
   let centeredCard = null;
   let flipIntervalId = null;
   let isFlipped = false;
+
+  function getCardVideo(card) {
+    return card.querySelector('.card-video');
+  }
+
+  function playCardVideo(card) {
+    const video = getCardVideo(card);
+    if (!video) return;
+    try {
+      video.currentTime = 0;
+    } catch (e) {
+      // ignore seek errors if not ready
+    }
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => {});
+    }
+  }
+
+  function stopCardVideo(card) {
+    const video = getCardVideo(card);
+    if (!video) return;
+    video.pause();
+    try {
+      video.currentTime = 0;
+    } catch (e) {
+      // ignore seek errors if not ready
+    }
+  }
 
   /**
    * Cache DOM references
@@ -81,58 +109,6 @@
     });
   }
 
-  /**
-   * Applies parallax transform to card image
-   * @param {HTMLElement} cardImage - The card image wrapper element
-   * @param {number} offsetX - Horizontal offset in pixels
-   * @param {number} offsetY - Vertical offset in pixels
-   */
-  function applyParallax(cardImage, offsetX, offsetY) {
-    if (!cardImage) return;
-    cardImage.style.setProperty('--parallax-x', `${offsetX}px`);
-    cardImage.style.setProperty('--parallax-y', `${offsetY}px`);
-  }
-
-  /**
-   * Resets parallax transform on card image
-   * @param {HTMLElement} cardImage - The card image wrapper element
-   */
-  function resetParallax(cardImage) {
-    if (!cardImage) return;
-    cardImage.style.removeProperty('--parallax-x');
-    cardImage.style.removeProperty('--parallax-y');
-  }
-
-  /**
-   * Animation loop for smooth parallax effect
-   * Uses linear interpolation for smooth movement
-   * @param {HTMLElement} card - The project card element
-   */
-  function animateParallax(card) {
-    const state = activeCards.get(card);
-    if (!state) return;
-
-    // Linear interpolation for smooth movement (0.1 = smooth, 0.3 = responsive)
-    const lerpFactor = 0.15;
-    state.currentX += (state.targetX - state.currentX) * lerpFactor;
-    state.currentY += (state.targetY - state.currentY) * lerpFactor;
-
-    // Apply the transform
-    const cardImage = card.querySelector('.card-image');
-    applyParallax(cardImage, state.currentX, state.currentY);
-
-    // Continue animation if there's significant movement remaining
-    const deltaX = Math.abs(state.targetX - state.currentX);
-    const deltaY = Math.abs(state.targetY - state.currentY);
-
-    if (deltaX > 0.01 || deltaY > 0.01) {
-      state.rafId = requestAnimationFrame(() => animateParallax(card));
-    } else {
-      // Snap to final position and stop animation
-      applyParallax(cardImage, state.targetX, state.targetY);
-      state.rafId = null;
-    }
-  }
 
   /**
    * Handles mouseenter on a card
@@ -141,14 +117,10 @@
   function handleMouseEnter(card) {
     card.classList.add(HOVER_CLASS);
 
-    // Initialize parallax state for this card
-    activeCards.set(card, {
-      rafId: null,
-      targetX: 0,
-      targetY: 0,
-      currentX: 0,
-      currentY: 0
-    });
+    if (getCardVideo(card)) {
+      playCardVideo(card);
+    }
+
   }
 
   /**
@@ -158,51 +130,12 @@
   function handleMouseLeave(card) {
     card.classList.remove(HOVER_CLASS);
 
-    // Cancel any running animation
-    const state = activeCards.get(card);
-    if (state && state.rafId) {
-      cancelAnimationFrame(state.rafId);
+    if (getCardVideo(card)) {
+      stopCardVideo(card);
     }
 
-    // Reset parallax
-    const cardImage = card.querySelector('.card-image');
-    resetParallax(cardImage);
-
-    // Remove from active cards
-    activeCards.delete(card);
   }
 
-  /**
-   * Handles mousemove on a card for parallax effect
-   * @param {HTMLElement} card - The project card element
-   * @param {MouseEvent} event - The mouse event
-   */
-  function handleMouseMove(card, event) {
-    const state = activeCards.get(card);
-    if (!state) return;
-
-    // Get card dimensions and position
-    const rect = card.getBoundingClientRect();
-
-    // Calculate mouse position relative to card center
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const mouseX = event.clientX - rect.left;
-    const mouseY = event.clientY - rect.top;
-
-    // Calculate offset from center (-1 to 1)
-    const offsetX = (mouseX - centerX) / centerX;
-    const offsetY = (mouseY - centerY) / centerY;
-
-    // Calculate target parallax values (inverted for natural feel)
-    state.targetX = offsetX * MAX_PARALLAX_OFFSET * -1;
-    state.targetY = offsetY * MAX_PARALLAX_OFFSET * -1;
-
-    // Start animation loop if not already running
-    if (!state.rafId) {
-      state.rafId = requestAnimationFrame(() => animateParallax(card));
-    }
-  }
 
   /**
    * Attaches hover event handlers to all project cards
@@ -219,10 +152,6 @@
         handleMouseLeave(card);
       });
 
-      // Mouse move - update parallax target
-      card.addEventListener('mousemove', (event) => {
-        handleMouseMove(card, event);
-      });
     });
   }
 
@@ -263,6 +192,7 @@
     }
 
     if (centeredCard) {
+      stopCardVideo(centeredCard);
       centeredCard.classList.remove('is-flipped');
     }
 
@@ -274,6 +204,11 @@
     centeredCard = card;
 
     if (!centeredCard) return;
+
+    if (getCardVideo(centeredCard)) {
+      playCardVideo(centeredCard);
+      return;
+    }
 
     flipIntervalId = setInterval(() => {
       isFlipped = !isFlipped;

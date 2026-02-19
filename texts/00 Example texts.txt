@@ -1,0 +1,29 @@
+﻿Brand identity and website redesign for a New York logistics company specializing in freight, moves, and furniture installations. The project encompassed a complete visual overhaul, from logo design to a fully responsive website.
+The Challenge
+Alluel needed a modern brand identity that would set them apart in the competitive New York logistics market. The existing branding felt outdated and didn't communicate the company's commitment to quality and reliability. The challenge was to create a visual system that felt both professional and approachable.
+The Solution
+We developed a clean, bold brand identity centered around a custom wordmark and a vibrant blue color palette. The website was built with a focus on user experience, featuring clear service descriptions, an intuitive quote request flow, and responsive design that works seamlessly across all devices.
+
+Trag Foundation published the Philanthropic Agenda, the first document of its kind to provide an overview of the key regulatory areas that need to be improved. This comprehensive publication required thoughtful editorial design to present complex policy information in an accessible and visually engaging format.
+The Challenge
+The Philanthropic Agenda contained dense regulatory and policy content that needed to be presented in a way that was both authoritative and readable. The challenge was to create a design system that could handle complex data, charts, and lengthy text while maintaining visual interest throughout the 100+ page document.
+The Solution
+We designed a clean editorial system with a strong typographic hierarchy, strategic use of color coding for different regulatory areas, and custom infographics to visualize complex data. Pull quotes and sidebar elements break up the text, while a consistent grid system ensures readability across all sections.
+
+Video editing and motion graphics for Prohibition Partners, a leading cannabis industry intelligence firm. The project involved creating dynamic video content for their LIVE series, combining data visualization with engaging editorial storytelling.
+The Challenge
+Prohibition Partners needed to transform complex cannabis market data and industry insights into compelling video content for their LIVE broadcast series. The content had to be both informative for industry professionals and visually engaging enough to maintain viewer attention across lengthy presentations.
+The Solution
+We developed a motion graphics system with animated data visualizations, lower thirds, and transition sequences that maintained brand consistency throughout the series. Custom chart animations brought market data to life, while a clean editorial approach to video editing ensured the content remained professional and authoritative.
+
+Social media content creation and strategy for Stadion Shopping Center, a major retail destination. The project encompassed content planning, graphic design, and campaign management across multiple social platforms.
+The Challenge
+Stadion Shopping Center needed a cohesive social media presence that could promote diverse tenants, seasonal campaigns, and events while maintaining a unified brand voice. The challenge was creating a high volume of visually consistent content that would drive foot traffic and engagement across Instagram, Facebook, and TikTok.
+The Solution
+We established a comprehensive content system with templated post formats for different content types — tenant spotlights, event promotions, seasonal campaigns, and lifestyle content. A consistent color palette and typography system ensured brand recognition, while varied content formats (carousels, reels, stories) maximized engagement across platforms.
+
+Data visualization and editorial design for Cannabis Oceania, providing market insights for the Asia-Pacific cannabis industry. The project combined web design with editorial content to create a comprehensive digital publication.
+The Challenge
+Cannabis Oceania needed to present complex market data and regulatory information for the Asia-Pacific cannabis industry in a way that was both comprehensive and accessible to a diverse international audience. The content spanned multiple countries with different regulatory frameworks, market sizes, and growth trajectories.
+The Solution
+We created an interactive web publication with custom data visualizations that allow users to explore market data by country and category. The editorial design uses a clean, data-forward approach with interactive charts, comparative tables, and narrative sections that contextualize the numbers. Responsive design ensures the content is accessible on all devices.

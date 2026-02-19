@@ -1,0 +1,7 @@
+﻿Client: Evergreen Fund Industry: Investment, Agriculture, Passive Income Services: Web Design, UI/UX Design Role: Digital Product Design
+Evergreen Fund
+Investing in a sustainable future, one tree at a time.
+The Story Evergreen Fund offers a unique opportunity for passive income through agricultural investment—specifically hazelnut plantations. By connecting investors with large-scale farming, they enable individuals to own trees and share profits 50/50 with the cultivators. The project required a digital platform that could transform a traditional agricultural business into a transparent, accessible, and modern investment product.
+The Approach The design focuses on radical transparency and ease of use, breaking down the investment process into three simple steps: placing an order, plantation setup, and collecting the yield. A key feature was the integration of utility tools like the ROI calculator, which allows users to visualize various financial scenarios—from realistic to optimistic. The visual language combines trust-inspiring professional layouts with the organic essence of the industry, guiding the user through the entire investment cycle.
+The Result A comprehensive landing page and investment interface that simplifies complex agro-services. The platform successfully positions Evergreen Fund as a bridge between a new generation of investors and sustainable wealth creation.
+

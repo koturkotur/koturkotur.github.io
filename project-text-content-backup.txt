@@ -1,0 +1,216 @@
+================================================================================
+PROJECT TEXT CONTENT BACKUP
+Original text content from all project pages
+Saved before layout/template changes
+================================================================================
+
+================================================================================
+1. ALLUEL (Original Version)
+================================================================================
+
+TITLE: Alluel
+TAGS: Branding, Web
+
+DESCRIPTION:
+Brand identity and website redesign for a New York logistics company specializing in freight, moves, and furniture installations. The project encompassed a complete visual overhaul, from logo design to a fully responsive website.
+
+DETAILS:
+- Client: Alluel
+- Year: 2024
+- Services: Brand Identity, Web Design, Development
+- Tools: Figma, HTML/CSS, JavaScript
+- Live URL: Visit Site →
+
+THE CHALLENGE:
+Alluel needed a modern brand identity that would set them apart in the competitive New York logistics market. The existing branding felt outdated and didn't communicate the company's commitment to quality and reliability. The challenge was to create a visual system that felt both professional and approachable.
+
+THE SOLUTION:
+We developed a clean, bold brand identity centered around a custom wordmark and a vibrant blue color palette. The website was built with a focus on user experience, featuring clear service descriptions, an intuitive quote request flow, and responsive design that works seamlessly across all devices.
+
+================================================================================
+2. CANNABIS OCEANIA
+================================================================================
+
+TITLE: Cannabis Oceania
+TAGS: Web, Editorial Design
+
+DESCRIPTION:
+Data visualization and editorial design for Cannabis Oceania, providing market insights for the Asia-Pacific cannabis industry. The project combined web design with editorial content to create a comprehensive digital publication.
+
+DETAILS:
+- Client: Cannabis Oceania
+- Year: 2023
+- Services: Web Design, Data Visualization, Editorial Design
+- Tools: Figma, HTML/CSS, JavaScript, D3.js
+- Live URL: Visit Site →
+
+THE CHALLENGE:
+Cannabis Oceania needed to present complex market data and regulatory information for the Asia-Pacific cannabis industry in a way that was both comprehensive and accessible to a diverse international audience. The content spanned multiple countries with different regulatory frameworks, market sizes, and growth trajectories.
+
+THE SOLUTION:
+We created an interactive web publication with custom data visualizations that allow users to explore market data by country and category. The editorial design uses a clean, data-forward approach with interactive charts, comparative tables, and narrative sections that contextualize the numbers. Responsive design ensures the content is accessible on all devices.
+
+================================================================================
+3. DISRUPTING DRINKS
+================================================================================
+
+TITLE: Disrupting Drinks
+TAGS: Editorial Design
+
+DESCRIPTION:
+Editorial design for Disrupting Drinks publication.
+
+DETAILS:
+- Client: Disrupting Drinks
+- Year: 2024
+- Services: Editorial Design
+- Tools: Adobe InDesign, Illustrator
+- Live URL: Visit Site →
+
+THE CHALLENGE:
+Project description coming soon.
+
+THE SOLUTION:
+Project description coming soon.
+
+================================================================================
+4. NEMIRNI
+================================================================================
+
+TITLE: Nemirni
+TAGS: Synopsis Design, Editorial Design
+
+DESCRIPTION:
+Synopsis and editorial design for Nemirni.
+
+DETAILS:
+- Client: Nemirni
+- Year: 2024
+- Services: Synopsis Design, Editorial Design
+- Tools: Adobe InDesign, Illustrator
+- Live URL: Visit Site →
+
+THE CHALLENGE:
+Project description coming soon.
+
+THE SOLUTION:
+Project description coming soon.
+
+================================================================================
+5. PHILANTHROPIC AGENDA
+================================================================================
+
+TITLE: Philanthropic Agenda
+TAGS: Editorial Design
+
+DESCRIPTION:
+Trag Foundation published the Philanthropic Agenda, the first document of its kind to provide an overview of the key regulatory areas that need to be improved. This comprehensive publication required thoughtful editorial design to present complex policy information in an accessible and visually engaging format.
+
+DETAILS:
+- Client: Trag Foundation
+- Year: 2023
+- Services: Editorial Design, Layout, Print Design
+- Tools: Adobe InDesign, Illustrator, Photoshop
+- Live URL: Visit Site →
+
+THE CHALLENGE:
+The Philanthropic Agenda contained dense regulatory and policy content that needed to be presented in a way that was both authoritative and readable. The challenge was to create a design system that could handle complex data, charts, and lengthy text while maintaining visual interest throughout the 100+ page document.
+
+THE SOLUTION:
+We designed a clean editorial system with a strong typographic hierarchy, strategic use of color coding for different regulatory areas, and custom infographics to visualize complex data. Pull quotes and sidebar elements break up the text, while a consistent grid system ensures readability across all sections.
+
+================================================================================
+6. PROHIBITION PARTNERS LIVE
+================================================================================
+
+TITLE: Prohibition Partners LIVE
+TAGS: Video Editing
+
+DESCRIPTION:
+Video editing and motion graphics for Prohibition Partners, a leading cannabis industry intelligence firm. The project involved creating dynamic video content for their LIVE series, combining data visualization with engaging editorial storytelling.
+
+DETAILS:
+- Client: Prohibition Partners
+- Year: 2023
+- Services: Video Editing, Motion Graphics, Data Visualization
+- Tools: Adobe Premiere Pro, After Effects, Illustrator
+- Live URL: Visit Site →
+
+THE CHALLENGE:
+Prohibition Partners needed to transform complex cannabis market data and industry insights into compelling video content for their LIVE broadcast series. The content had to be both informative for industry professionals and visually engaging enough to maintain viewer attention across lengthy presentations.
+
+THE SOLUTION:
+We developed a motion graphics system with animated data visualizations, lower thirds, and transition sequences that maintained brand consistency throughout the series. Custom chart animations brought market data to life, while a clean editorial approach to video editing ensured the content remained professional and authoritative.
+
+================================================================================
+7. STADION SHOPPING CENTER
+================================================================================
+
+TITLE: Stadion Shopping Center
+TAGS: Social Media
+
+DESCRIPTION:
+Social media content creation and strategy for Stadion Shopping Center, a major retail destination. The project encompassed content planning, graphic design, and campaign management across multiple social platforms.
+
+DETAILS:
+- Client: Stadion Shopping Center
+- Year: 2024
+- Services: Social Media Management, Content Creation, Graphic Design
+- Tools: Adobe Photoshop, Illustrator, Canva, Meta Business Suite
+- Live URL: Visit Site →
+
+THE CHALLENGE:
+Stadion Shopping Center needed a cohesive social media presence that could promote diverse tenants, seasonal campaigns, and events while maintaining a unified brand voice. The challenge was creating a high volume of visually consistent content that would drive foot traffic and engagement across Instagram, Facebook, and TikTok.
+
+THE SOLUTION:
+We established a comprehensive content system with templated post formats for different content types — tenant spotlights, event promotions, seasonal campaigns, and lifestyle content. A consistent color palette and typography system ensured brand recognition, while varied content formats (carousels, reels, stories) maximized engagement across platforms.
+
+================================================================================
+8. VIS VRLJIKA
+================================================================================
+
+TITLE: VIS Vrljika
+TAGS: Poster Design, Branding
+
+DESCRIPTION:
+Poster design and branding for VIS Vrljika.
+
+DETAILS:
+- Client: VIS Vrljika
+- Year: 2024
+- Services: Poster Design, Branding
+- Tools: Adobe Illustrator, Photoshop
+- Live URL: Visit Site →
+
+THE CHALLENGE:
+Project description coming soon.
+
+THE SOLUTION:
+Project description coming soon.
+
+================================================================================
+9. ŽITNICA
+================================================================================
+
+TITLE: Žitnica
+TAGS: Web
+
+DESCRIPTION:
+Web design for Žitnica.
+
+DETAILS:
+- Client: Žitnica
+- Year: 2024
+- Services: Web Design
+- Tools: Figma, HTML/CSS
+- Live URL: Visit Site →
+
+THE CHALLENGE:
+Project description coming soon.
+
+THE SOLUTION:
+Project description coming soon.
+
+================================================================================
+END OF BACKUP
+================================================================================
