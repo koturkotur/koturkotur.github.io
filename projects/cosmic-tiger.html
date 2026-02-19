@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    (function() {
+      var savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cosmic Tiger — Milorad Koturovic</title>
+  <meta name="description" content="An audiovisual identity for a raw, undiscovered street artist - built from the ground up on pure creative instinct.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cosmic Tiger — Milorad Koturovic">
+  <meta property="og:description" content="An audiovisual identity for a raw, undiscovered street artist - built from the ground up on pure creative instinct.">
+  <meta property="og:type" content="website">
+  
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/project-page.css">
+</head>
+<body>
+
+  <!-- Header / Navigation -->
+  <header class="nav-header" id="nav-header">
+    <nav class="nav-bar" aria-label="Main navigation">
+      <a href="/" class="nav-logo">MILORAD KOTUROVIC</a>
+      <div class="nav-links hide-mobile">
+        <a href="/" class="nav-link">Work</a>
+        <a href="/about.html" class="nav-link">About</a>
+        <a href="/contact.html" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" type="button">
+          <!-- Sun icon for dark mode (click to go light) -->
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Moon icon for light mode (click to go dark) -->
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+        <button class="nav-menu-btn hide-desktop" id="nav-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" type="button">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Mobile navigation menu">
+    <div class="mobile-menu-content">
+      <a href="/" class="mobile-menu-link">Work</a>
+      <a href="/about.html" class="mobile-menu-link">About</a>
+      <a href="/contact.html" class="mobile-menu-link">Contact</a>
+    </div>
+  </div>
+
+  <div id="page-wrapper">
+    <!-- Main Content -->
+    <main class="main">
+    <!-- Hero Image — full-bleed, outside container -->
+    <div class="project-hero project-hero--fullbleed anim-fade-up">
+      <img src="../assets/images/projects/cosmic-tiger/hero.jpg" alt="Cosmic Tiger audiovisual identity" loading="eager" width="1600" height="900">
+    </div>
+
+    <div class="container">
+
+      <!-- Project Header -->
+      <header class="project-header project-header--refined anim-fade-up">
+        <h1 class="project-title">Cosmic Tiger</h1>
+        <div class="project-tags project-tags--primary">
+          <span class="tag">Creative Direction</span>
+          <span class="tag">Visual Identity</span>
+          <span class="tag">Video Production</span>
+        </div>
+        <div class="project-tags project-tags--secondary">
+          <span class="tag">Music</span>
+          <span class="tag">Entertainment</span>
+          <span class="tag">Art</span>
+        </div>
+      </header>
+
+      <!-- Overview + Details -->
+      <div class="project-overview anim-fade-up">
+        <div class="project-description">
+          <p>An audiovisual identity for a raw, undiscovered street artist - built from the ground up on pure creative instinct.</p>
+        </div>
+        <aside class="project-details">
+          <div class="detail-item">
+            <div class="detail-label">Client</div>
+            <div class="detail-value">Cosmic Tiger</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Industry</div>
+            <div class="detail-value">Music, Entertainment, Art</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Services</div>
+            <div class="detail-value">Creative Direction, Visual Identity, Video Production</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Live Site</div>
+            <div class="detail-value">Coming soon</div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- The Story -->
+      <section class="project-section anim-fade-up">
+        <h2 class="project-section-title">The Story</h2>
+        <p class="project-section-text">Cosmic Tiger is an experimental initiative born from a desire to support raw talent. The project was driven by a non-commercial, purely artistic mission - providing a high-end visual platform for a musician who embodies the soul of the streets.</p>
+      </section>
+
+      <!-- Image Gallery -->
+      <div class="project-gallery anim-fade-up">
+        <img src="../assets/images/projects/cosmic-tiger/gallery-1.jpg" alt="Cosmic Tiger visual identity detail" loading="lazy" width="800" height="600">
+        <img src="../assets/images/projects/cosmic-tiger/gallery-2.jpg" alt="Cosmic Tiger video production still" loading="lazy" width="800" height="600">
+      </div>
+
+      <!-- The Approach -->
+      <section class="project-section anim-fade-up">
+        <h2 class="project-section-title">The Approach</h2>
+        <p class="project-section-text">The visual direction draws from the artist's sound - gritty, atmospheric, and hypnotic. Cinematic video, high-impact posters, and social content work together under a moody, uncompromising aesthetic that mirrors the music.</p>
+      </section>
+
+      <!-- Full-width Gallery Image -->
+      <div class="project-gallery-full anim-fade-up">
+        <img src="../assets/images/projects/cosmic-tiger/gallery-3.jpg" alt="Cosmic Tiger project showcase" loading="lazy" width="1600" height="900">
+      </div>
+
+      <!-- The Result -->
+      <section class="project-section anim-fade-up">
+        <h2 class="project-section-title">The Result</h2>
+        <p class="project-section-text">A compelling identity that introduces Cosmic Tiger to the world and proves that design can be a vehicle for artistic and social empowerment.</p>
+      </section>
+
+      <!-- Previous/Next Navigation -->
+      <nav class="project-nav anim-fade-up" aria-label="Project navigation">
+        <a href="gaj-inzenjering.html" class="project-nav-link">
+          <span class="project-nav-label">← Previous Project</span>
+          <span class="project-nav-title">GAJ Inženjering</span>
+        </a>
+        <a href="prohibition-partners.html" class="project-nav-link project-nav-link--next">
+          <span class="project-nav-label">Next Project →</span>
+          <span class="project-nav-title">Prohibition Partners LIVE</span>
+        </a>
+      </nav>
+
+    </div><!-- /container -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-bar">
+      <p class="footer-copyright">&copy; 2025 Milorad Koturovic</p>
+      <p class="footer-cta">Let's work together</p>
+      <div class="footer-links">
+        <a href="mailto:kotur3@outlook.com" class="footer-link">Email</a>
+        <a href="https://linkedin.com/in/milorad-koturovic" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/theme.js" defer></script>
+  <script src="../js/animations.js" defer></script>
+  <script src="../js/nav.js" defer></script>
+  <script src="../js/transitions.js" defer></script>
+
+</body>
+</html>
