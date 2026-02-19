@@ -33,6 +33,23 @@
     mobileMenuLinks = Array.from(document.querySelectorAll('.mobile-menu-link'));
   }
 
+  function updateActiveMobileLink() {
+    if (!mobileMenuLinks.length) return;
+    const currentPath = window.location.pathname.replace(/\/index\.html$/, '/');
+
+    mobileMenuLinks.forEach(link => {
+      const linkPath = new URL(link.getAttribute('href'), window.location.origin)
+        .pathname.replace(/\/index\.html$/, '/');
+      const isActive = linkPath === currentPath;
+      link.classList.toggle(ACTIVE_CLASS, isActive);
+      if (isActive) {
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  }
+
   /**
    * Checks if mobile menu is currently open
    * @returns {boolean}
@@ -203,6 +220,7 @@
    */
   function init() {
     cacheElements();
+    updateActiveMobileLink();
     attachMenuHandlers();
     attachScrollHandler();
   }

@@ -1,6 +1,6 @@
 # Milorad Koturović — Portfolio
 
-A personal portfolio website inspired by [Velvele Studio](https://velvele.studio/work), built with plain HTML/CSS/JS (no frameworks or build tools).
+A personal portfolio website built with plain HTML/CSS/JS (no frameworks or build tools).
 
 ---
 
