@@ -1,6 +1,6 @@
 # Portfolio Website Redesign Plan
 
-## Milorad Koturovic — Personal Portfolio
+## Milorad Koturović — Personal Portfolio
 
 **Stack**: Plain HTML / CSS / JavaScript (no frameworks, no build step)
 **Theme**: Dark mode default + Light mode toggle, blue accent (`#030ffc`)
