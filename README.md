@@ -85,10 +85,10 @@ project/
 - Mobile: centered card shows hover state + pills (auto-flips every 1s)
 
 ### Filter Bar
-- **Desktop**: Horizontal pill buttons (All + 6 categories)
+- **Desktop**: Horizontal pill buttons (All + 5 categories)
 - **Mobile**: Same pill bar with horizontal drag/scroll
 - **Position**: Fixed at bottom center of viewport
-- Categories: Web, Branding, Video Editing, Editorial Design, Poster, Social Media
+- Categories: Web, Branding, Motion, Print, Advertising
 
 ### Project Detail Pages
 - Full case study layout:

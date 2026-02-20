@@ -32,7 +32,7 @@ We developed a clean, bold brand identity centered around a custom wordmark and 
 ================================================================================
 
 TITLE: Cannabis Oceania
-TAGS: Web, Editorial Design
+TAGS: Web, Print
 
 DESCRIPTION:
 Data visualization and editorial design for Cannabis Oceania, providing market insights for the Asia-Pacific cannabis industry. The project combined web design with editorial content to create a comprehensive digital publication.
@@ -55,7 +55,7 @@ We created an interactive web publication with custom data visualizations that a
 ================================================================================
 
 TITLE: Disrupting Drinks
-TAGS: Editorial Design
+TAGS: Print
 
 DESCRIPTION:
 Editorial design for Disrupting Drinks publication.
@@ -78,7 +78,7 @@ Project description coming soon.
 ================================================================================
 
 TITLE: Nemirni
-TAGS: Synopsis Design, Editorial Design
+TAGS: Print
 
 DESCRIPTION:
 Synopsis and editorial design for Nemirni.
@@ -101,7 +101,7 @@ Project description coming soon.
 ================================================================================
 
 TITLE: Philanthropic Agenda
-TAGS: Editorial Design
+TAGS: Print
 
 DESCRIPTION:
 Trag Foundation published the Philanthropic Agenda, the first document of its kind to provide an overview of the key regulatory areas that need to be improved. This comprehensive publication required thoughtful editorial design to present complex policy information in an accessible and visually engaging format.
@@ -124,7 +124,7 @@ We designed a clean editorial system with a strong typographic hierarchy, strate
 ================================================================================
 
 TITLE: Prohibition Partners LIVE
-TAGS: Video Editing
+TAGS: Motion
 
 DESCRIPTION:
 Video editing and motion graphics for Prohibition Partners, a leading cannabis industry intelligence firm. The project involved creating dynamic video content for their LIVE series, combining data visualization with engaging editorial storytelling.
@@ -147,7 +147,7 @@ We developed a motion graphics system with animated data visualizations, lower t
 ================================================================================
 
 TITLE: Stadion Shopping Center
-TAGS: Social Media
+TAGS: Advertising
 
 DESCRIPTION:
 Social media content creation and strategy for Stadion Shopping Center, a major retail destination. The project encompassed content planning, graphic design, and campaign management across multiple social platforms.
@@ -170,7 +170,7 @@ We established a comprehensive content system with templated post formats for di
 ================================================================================
 
 TITLE: VIS Vrljika
-TAGS: Poster Design, Branding
+TAGS: Print, Branding
 
 DESCRIPTION:
 Poster design and branding for VIS Vrljika.

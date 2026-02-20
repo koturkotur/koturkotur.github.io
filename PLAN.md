@@ -2,7 +2,6 @@
 
 ## Milorad Koturovic — Personal Portfolio
 
-**Reference**: [Velvele Studio /work](https://velvele.studio/work)
 **Stack**: Plain HTML / CSS / JavaScript (no frameworks, no build step)
 **Theme**: Dark mode default + Light mode toggle, blue accent (`#030ffc`)
 
@@ -61,7 +60,7 @@ Light Theme:
 - **Page padding**: 20px (desktop), 16px (tablet), 12px (mobile)
 - **Grid gap**: 16px (desktop), 8px (mobile)
 - **Border radius**: 24px (cards), 40px (pills/buttons), 16px (smaller elements)
-- **Multi-layer shadow** (signature Velvele-style):
+- **Multi-layer shadow** (signature stack):
   ```css
   box-shadow:
     0px 0.8px 2.4px -0.6px var(--shadow),
@@ -212,7 +211,7 @@ project/
 **Desktop**: Horizontal pill bar below the header area
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  ● All    Web    Branding    Video Editing    ...       │
+│  ● All    Web    Branding    Motion    Print    ...     │
 └─────────────────────────────────────────────────────────┘
 ```
 - Sticky position: `position: sticky; top: 80px; z-index: 50`
@@ -221,7 +220,7 @@ project/
 - Click filters cards with fade animation (JS-based, not route-based)
 - Horizontal scroll on mobile if categories overflow
 
-**Mobile**: Dropdown accordion (like Velvele)
+**Mobile**: Dropdown accordion
 ```
 ┌──────────────────────┐
 │  All            ▼    │
@@ -229,10 +228,9 @@ project/
 │  All                 │
 │  Web                 │
 │  Branding            │
-│  Video Editing       │
-│  Editorial Design    │
-│  Poster              │
-│  Social Media        │
+│  Motion              │
+│  Print               │
+│  Advertising         │
 └──────────────────────┘
 ```
 
@@ -497,12 +495,12 @@ const projects = [
 
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
-| **Theme** | Dark default + light toggle | User preference; differentiates from Velvele's all-white |
+| **Theme** | Dark default + light toggle | User preference; balances contrast and readability |
 | **Grid → List responsive** | Grid on desktop/tablet, list on mobile | Matches user's existing mobile design; grid for visual impact on larger screens |
 | **Filtering** | Client-side JS (not route-based) | Simpler for plain HTML; instant feedback; no page reloads |
 | **Image hover** | 2 images (cover + reveal) | Good balance of visual interest vs. asset management |
-| **Animations** | Spring-based, scroll-triggered | Matches Velvele's polished feel; uses CSS + minimal JS |
-| **Font** | General Sans via Fontshare | Matches reference; free for commercial use; premium feel |
+| **Animations** | Spring-based, scroll-triggered | Polished motion; uses CSS + minimal JS |
+| **Font** | General Sans via Fontshare | Free for commercial use; premium feel |
 | **No build step** | Plain HTML/CSS/JS | User preference; simple deployment; no tooling overhead |
 | **View Transition API** | Progressive enhancement | Smooth page transitions where supported; graceful fallback |
 

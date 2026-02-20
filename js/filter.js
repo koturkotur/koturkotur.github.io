@@ -48,16 +48,15 @@
   function attachPillDragScroll() {
     if (!filterPillsContainer) return;
 
+    // Use native scrolling on touch for a fluid, inertia-based feel
     filterPillsContainer.addEventListener('pointerdown', (event) => {
-      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      if (event.pointerType !== 'mouse') return;
+      if (event.button !== 0) return;
       isDraggingPills = true;
       hasDraggedPills = false;
       dragStartX = event.clientX;
       dragStartScrollLeft = filterPillsContainer.scrollLeft;
       filterPillsContainer.classList.add('is-dragging');
-      if (event.pointerType !== 'mouse') {
-        filterPillsContainer.setPointerCapture(event.pointerId);
-      }
     });
 
     filterPillsContainer.addEventListener('pointermove', (event) => {
@@ -69,13 +68,10 @@
       filterPillsContainer.scrollLeft = dragStartScrollLeft - deltaX;
     });
 
-    const stopDrag = (event) => {
+    const stopDrag = () => {
       if (!isDraggingPills) return;
       isDraggingPills = false;
       filterPillsContainer.classList.remove('is-dragging');
-      if (event && event.pointerId !== undefined && event.pointerType !== 'mouse') {
-        filterPillsContainer.releasePointerCapture(event.pointerId);
-      }
       setTimeout(() => {
         hasDraggedPills = false;
       }, 0);
@@ -85,7 +81,7 @@
     filterPillsContainer.addEventListener('pointercancel', stopDrag);
     filterPillsContainer.addEventListener('pointerleave', stopDrag);
 
-    // Prevent accidental click when dragging
+    // Prevent accidental click when dragging with mouse
     filterPillsContainer.addEventListener('click', (event) => {
       if (hasDraggedPills) {
         event.preventDefault();

@@ -15,9 +15,16 @@
     var currentPath = window.location.pathname;
     var previousPath = sessionStorage.getItem('lastPagePath');
     var navTriggered = sessionStorage.getItem('navTriggered') === '1';
+    var forceTopPath = sessionStorage.getItem('forceTopOnReload');
 
-    // If navigation was triggered by clicking a link, always start at top
-    if (navTriggered) {
+    // If logo click flagged a forced top reload for this page
+    if (forceTopPath === currentPath) {
+      window.scrollTo(0, 0);
+      sessionStorage.setItem('scrollY_' + currentPath, '0');
+      sessionStorage.removeItem('forceTopOnReload');
+      sessionStorage.removeItem('navTriggered');
+    } else if (navTriggered) {
+      // If navigation was triggered by clicking a link, always start at top
       window.scrollTo(0, 0);
       sessionStorage.removeItem('navTriggered');
     } else if (previousPath === currentPath) {
@@ -81,8 +88,10 @@
         // If clicking a link to the SAME page (reload scenario), do a hard reload without animation
         if (currentUrl === targetUrl) {
           event.preventDefault();
-          if (link.classList.contains('nav-logo')) {
+          if (link.classList.contains('nav-logo') && targetUrl === '/') {
             sessionStorage.setItem('resetFilter', '1');
+            sessionStorage.setItem('scrollY_' + currentUrl, '0');
+            sessionStorage.setItem('forceTopOnReload', currentUrl);
           }
           sessionStorage.setItem('navTriggered', '1');
           window.location.reload();
@@ -92,8 +101,10 @@
         // Different page — simple navigation (no zoom)
         event.preventDefault();
         sessionStorage.setItem('navTriggered', '1');
-        if (link.classList.contains('nav-logo')) {
+        if (link.classList.contains('nav-logo') && targetUrl === '/') {
           sessionStorage.setItem('resetFilter', '1');
+          sessionStorage.setItem('scrollY_' + targetUrl, '0');
+          sessionStorage.setItem('forceTopOnReload', targetUrl);
         }
         window.location.href = href;
       }

@@ -1,6 +1,6 @@
 /* ==========================================================================
    LAYOUT SYSTEM
-   Portfolio Website Layout - Inspired by Velvele Studio
+   Portfolio Website Layout System
    Mobile-first responsive design with custom property integration
    ========================================================================== */
 
@@ -41,6 +41,12 @@
   flex: 1;
 }
 
+@media (max-width: 767px) {
+  .main {
+    padding-top: 80px;
+  }
+}
+
 /* ==========================================================================
     PROJECT GRID
     Responsive grid for project listings
@@ -53,7 +59,24 @@
   display: grid;
   grid-template-columns: 1fr; /* Mobile: single column list view */
   gap: 12px; /* Match edge padding on mobile */
-  padding: var(--space-xl) 12px 0; /* Space below navigation + edge padding */
+  padding: var(--space-xl) 12px var(--space-xl); /* Space below navigation + edge padding */
+}
+
+/* Work page: pad the grid bottom so the fixed filter bar
+   clears the last card with a natural gap.
+   Formula: gap-above-bar + bar-height + gap-below-bar
+   Mobile: 20px + 52px + 32px = 104px */
+.page-work .project-grid {
+  padding-bottom: calc(20px + 52px + var(--space-xl));
+}
+
+
+@media (max-width: 767px) {
+  .project-grid {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
+  }
+
 }
 
 /* Tablet: 768px – 1199px */
@@ -61,8 +84,14 @@
   .project-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-md);
-    padding: var(--space-4xl) var(--space-md) 0; /* Match gap for edge spacing + top space */
+    padding: var(--space-2xl) var(--space-md) var(--space-2xl); /* Match gap for edge spacing + top space */
   }
+
+  /* Tablet: 20px + 52px + 32px = 104px */
+  .page-work .project-grid {
+    padding-bottom: calc(20px + 52px + var(--space-xl));
+  }
+
 }
 
 /* Desktop: 1200px – 1699px */
@@ -70,9 +99,15 @@
   .project-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-md);
-    padding: var(--space-xl) var(--space-md) 0; /* Tighter top space on desktop */
+    padding: var(--space-xl) var(--space-md) var(--space-xl); /* Tighter top space on desktop */
     width: 100%;
   }
+
+  /* Desktop: 20px + 52px + 40px = 112px */
+  .page-work .project-grid {
+    padding-bottom: calc(20px + 52px + 40px);
+  }
+
 }
 
 /* XLarge: ≥ 1700px - maintains 3 columns full width */
@@ -80,9 +115,15 @@
   .project-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-md);
-    padding: var(--space-xl) var(--space-md) 0; /* Tighter top space on desktop */
+    padding: var(--space-xl) var(--space-md) var(--space-xl); /* Tighter top space on desktop */
     width: 100%;
   }
+
+  /* XLarge: same as desktop */
+  .page-work .project-grid {
+    padding-bottom: calc(20px + 52px + 40px);
+  }
+
 }
 
 /* ==========================================================================
