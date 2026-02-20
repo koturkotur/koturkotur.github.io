@@ -231,15 +231,4 @@ body.is-filtering .project-grid {
   transition: opacity 0.3s ease;
 }
 
-/* ------------------------------------------
-   Theme Transition
-   Smooth color transitions when switching themes
-   ------------------------------------------ */
-
-body.theme-transitioning,
-body.theme-transitioning * {
-  transition: background-color 0.3s ease,
-              color 0.3s ease,
-              border-color 0.3s ease,
-              box-shadow 0.3s ease !important;
-}
+/* Theme switches instantly — no transition */

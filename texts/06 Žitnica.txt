@@ -1,4 +1,4 @@
-Client: Žitnica Industry: Agriculture, AgTech, E-commerce Services: Product Design (UI/UX), Branding, Logo Design, Web Development Role: Lead Product Designer
+Client: Žitnica Industry: Agriculture, AgTech, E-commerce Services: Web, Branding, Logo Design, Web Development Role: Lead Product Designer
 Žitnica
 Digitalizing the grain marketplace.
 The Story Žitnica is a comprehensive B2B/B2C web application designed to revolutionize the agricultural trade. The project involved creating a digital ecosystem where producers and buyers can trade grains with maximum transparency and efficiency. This was a "from scratch" challenge: I was responsible for the entire brand identity, the complex UX logic of a trading platform, and a high-fidelity UI that makes data-heavy grain trading intuitive and accessible.

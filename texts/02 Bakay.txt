@@ -1,4 +1,4 @@
-Client: Bakay Studio Industry: High Fashion, E-commerce, Digital Art Services: Web Development (Webflow), Interactive Design, Motion Design Live Site: bakay.webflow.io
+Client: Bakay Studio Industry: High Fashion, E-commerce, Digital Art Services: Web, Motion, Interactive Design Live Site: bakay.webflow.io
 Bakay Studio
 The intersection of digital distortion and modern craftsmanship.
 The Story Bakay Studio is a fashion house where the past and future collide, creating designs that inhabit the "grey area" between our online and offline lives. Their collections are defined by a mix of hyper-feminine, futuristic aesthetics and retro-inspired silhouettes. To translate this subversive vision into a digital flagship, Bakay needed an e-commerce experience that felt as avant-garde as the garments themselves. Building on the core visual direction, the challenge was to build a site that acts as a portal into this distorted, digital world.

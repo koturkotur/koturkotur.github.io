@@ -303,18 +303,42 @@
    10. RESPONSIVE BREAKPOINTS
    ========================================================================== */
 
-/* Tablet (768px - 1023px) */
-@media (max-width: 1023px) {
+/* Tablet (768px - 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  /* Title: between mobile (3rem) and desktop (5rem) */
   .project-title {
-    font-size: var(--text-3xl);
+    font-size: clamp(3rem, 6vw, 4rem);
   }
 
   .project-overview {
     gap: var(--space-xl);
   }
 
+  /* Body text: between mobile (1rem) and desktop (1.25rem) */
   .project-description {
-    font-size: var(--text-base);
+    font-size: 1.125rem;
+  }
+
+  .detail-label {
+    font-size: 0.75rem;
+  }
+
+  /* Detail values: between mobile (1rem) and desktop (1.125rem) */
+  .detail-value {
+    font-size: 1.0625rem;
+  }
+
+  /* Section titles: between mobile (1.25rem) and desktop (2rem) */
+  .project-section-title {
+    font-size: 1.625rem;
+  }
+
+  .project-section-text {
+    font-size: 1.125rem;
+  }
+
+  .project-nav-title {
+    font-size: 1.125rem;
   }
 }
 
@@ -514,7 +538,8 @@
     max-width: 700px;
   }
 
-@media (min-width: 768px) {
+/* Desktop (≥ 1200px) */
+@media (min-width: 1200px) {
   .project-title {
     font-size: 80px;
   }
@@ -545,17 +570,16 @@
     font-size: 14px;
     padding: 5px 16px;
   }
-}
 
-@media (max-width: 767px) {
-  .project-title {
-    font-size: var(--text-4xl);
+  .project-header--refined {
+    margin-top: 0;
   }
 }
 
-@media (min-width: 1024px) {
-  .project-header--refined {
-    margin-top: 0;
+/* Mobile (< 768px) */
+@media (max-width: 767px) {
+  .project-title {
+    font-size: var(--text-4xl);
   }
 }
 
@@ -576,7 +600,7 @@
 }
 
 /* Responsive for Premium Layout */
-@media (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1199px) {
   .project-info-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);

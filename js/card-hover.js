@@ -30,14 +30,17 @@
   function playCardVideo(card) {
     const video = getCardVideo(card);
     if (!video) return;
-    try {
-      video.currentTime = 0;
-    } catch (e) {
-      // ignore seek errors if not ready
+
+    // Cancel any pending stop reset
+    if (video._stopRaf) {
+      cancelAnimationFrame(video._stopRaf);
+      video._stopRaf = null;
     }
+
     video.muted = true;
     video.loop = true;
     video.playsInline = true;
+
     const playPromise = video.play();
     if (playPromise && typeof playPromise.catch === 'function') {
       playPromise.catch(() => {});
@@ -47,12 +50,20 @@
   function stopCardVideo(card) {
     const video = getCardVideo(card);
     if (!video) return;
-    video.pause();
-    try {
-      video.currentTime = 0;
-    } catch (e) {
-      // ignore seek errors if not ready
-    }
+
+    const doStop = () => {
+      video._stopRaf = null;
+      // Wait for the pause event to fire before resetting currentTime,
+      // so the seek never races with an in-progress play promise.
+      const onPaused = () => {
+        video.currentTime = 0;
+      };
+      video.addEventListener('pause', onPaused, { once: true });
+      video.pause();
+    };
+
+    // Defer by one rAF so any play() promise has a chance to resolve first
+    video._stopRaf = requestAnimationFrame(doStop);
   }
 
   /**

@@ -525,13 +525,11 @@
 .card-cover {
   z-index: 2;
   opacity: 1;
-  transition: opacity 0.3s ease;
 }
 
 .card-hover {
   z-index: 1;
   opacity: 0;
-  transition: opacity 0.3s ease;
 }
 
 .project-card:hover .card-cover {

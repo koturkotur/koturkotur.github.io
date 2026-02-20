@@ -57,18 +57,6 @@
   }
 
   /**
-   * Handles the theme transition animation
-   * Adds a temporary class to body for CSS transitions, then removes it
-   */
-  function triggerTransition() {
-    bodyElement.classList.add(TRANSITION_CLASS);
-
-    setTimeout(() => {
-      bodyElement.classList.remove(TRANSITION_CLASS);
-    }, TRANSITION_DURATION);
-  }
-
-  /**
    * Toggles between dark and light themes
    * @param {HTMLElement} button - The theme toggle button
    */
@@ -76,14 +64,11 @@
     const currentTheme = htmlElement.getAttribute('data-theme') || THEME_DARK;
     const newTheme = currentTheme === THEME_DARK ? THEME_LIGHT : THEME_DARK;
 
-    // Apply the new theme
+    // Apply the new theme instantly
     applyTheme(newTheme);
 
     // Save preference to localStorage
     localStorage.setItem(STORAGE_KEY, newTheme);
-
-    // Trigger transition animation
-    triggerTransition();
 
     // Update button accessibility
     updateButtonAriaLabel(button, newTheme);

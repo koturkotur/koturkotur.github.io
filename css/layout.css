@@ -84,10 +84,10 @@
   .project-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-md);
-    padding: var(--space-2xl) var(--space-md) var(--space-2xl); /* Match gap for edge spacing + top space */
+    padding: var(--space-xl) var(--space-md) var(--space-2xl); /* Top matches About/Contact; bottom retains extra space */
   }
 
-  /* Tablet: 20px + 52px + 32px = 104px */
+  /* Tablet: same clearance formula as other breakpoints */
   .page-work .project-grid {
     padding-bottom: calc(20px + 52px + var(--space-xl));
   }
